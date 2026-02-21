@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agents Skills - AI Workers for Your Company</title>
-    <meta name="description" content="Hire AI workers that integrate seamlessly into your company. Scale your workforce with intelligent agents that learn, adapt, and deliver.">
+    <title>Agents Skills - Your AI coworker that learns how you work</title>
+    <meta name="description" content="Stop doing repetitive tasks. Agents Skills watches your workflow, learns the patterns, and handles them for you. 100% local. Free to try.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,670 +12,607 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #111119;
+            --bg: #0b0b11;
+            --bg-alt: #111119;
             --bg-card: #16161f;
             --bg-card-hover: #1c1c28;
-            --text-primary: #f0f0f5;
-            --text-secondary: #9a9ab0;
-            --text-muted: #6b6b80;
+            --text: #f0f0f5;
+            --text-2: #9a9ab0;
+            --text-3: #6b6b80;
             --accent: #f6851f;
             --accent-hover: #ff9a3c;
             --accent-glow: rgba(246, 133, 31, 0.15);
+            --green: #34d399;
             --blue: #6b8afd;
-            --purple: #a78bfa;
             --border: #1e1e2e;
-            --gradient-1: linear-gradient(135deg, #f6851f 0%, #f59e0b 50%, #a78bfa 100%);
-            --gradient-2: linear-gradient(135deg, #6b8afd 0%, #a78bfa 100%);
         }
 
         html { scroll-behavior: smooth; }
-
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Nav */
+        /* --- NAV --- */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
+            position: fixed; top: 0; width: 100%; z-index: 100;
             padding: 1rem 2rem;
-            background: rgba(10, 10, 15, 0.8);
-            backdrop-filter: blur(20px);
+            background: rgba(11, 11, 17, 0.85);
+            backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
         }
         .nav-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            max-width: 960px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
         }
-        .logo {
-            font-size: 1.25rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
+        .logo { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.5px; }
         .logo span { color: var(--accent); }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+        .nav-links a { color: var(--text-2); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        .mobile-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
 
-        /* Buttons */
+        /* --- BUTTONS --- */
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.75rem;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-            cursor: pointer;
-            border: none;
-            font-family: inherit;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.75rem 1.75rem; border-radius: 8px;
+            font-size: 0.95rem; font-weight: 600;
+            text-decoration: none; transition: all 0.2s;
+            cursor: pointer; border: none; font-family: inherit;
         }
-        .btn-primary {
-            background: var(--accent);
-            color: #fff;
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-        .btn-primary:hover {
-            background: var(--accent-hover);
-            box-shadow: 0 0 30px rgba(246, 133, 31, 0.3);
-            transform: translateY(-1px);
-        }
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-        }
-        .btn-secondary:hover {
-            border-color: var(--text-muted);
-            background: var(--bg-card);
-        }
+        .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 0 20px var(--accent-glow); }
+        .btn-primary:hover { background: var(--accent-hover); box-shadow: 0 0 30px rgba(246, 133, 31, 0.3); transform: translateY(-1px); }
+        .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+        .btn-ghost:hover { border-color: var(--text-3); background: var(--bg-card); }
+        .btn-sm { padding: 0.5rem 1.25rem; font-size: 0.85rem; }
 
-        /* Hero */
+        /* --- LAYOUT --- */
+        .container { max-width: 960px; margin: 0 auto; }
+        section { padding: 5rem 2rem; }
+
+        /* --- HERO --- */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 8rem 2rem 6rem;
+            text-align: center; padding: 9rem 2rem 4rem;
             position: relative;
-            overflow: hidden;
         }
         .hero::before {
-            content: '';
-            position: absolute;
-            top: -40%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(246, 133, 31, 0.08) 0%, rgba(107, 138, 253, 0.04) 40%, transparent 70%);
+            content: ''; position: absolute;
+            top: -30%; left: 50%; transform: translateX(-50%);
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(246,133,31,0.07) 0%, transparent 65%);
             pointer-events: none;
         }
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.4rem 1rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.35rem 1rem; background: var(--bg-card);
+            border: 1px solid var(--border); border-radius: 100px;
+            font-size: 0.8rem; color: var(--text-2); margin-bottom: 1.75rem;
         }
-        .hero-badge .dot {
-            width: 6px;
-            height: 6px;
-            background: #34d399;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
+        .hero-badge .dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -2px;
-            margin-bottom: 1.5rem;
-            max-width: 800px;
+            font-size: clamp(2.2rem, 5.5vw, 3.5rem);
+            font-weight: 800; line-height: 1.12; letter-spacing: -1.5px;
+            margin-bottom: 1.25rem; max-width: 700px; margin-left: auto; margin-right: auto;
         }
-        .hero h1 .gradient {
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .hero h1 em { font-style: normal; color: var(--accent); }
+        .hero .subtitle {
+            font-size: 1.15rem; color: var(--text-2);
+            max-width: 520px; margin: 0 auto 2rem; line-height: 1.65;
         }
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 580px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.7;
+        .hero-buttons { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+
+        /* --- PROOF BAR --- */
+        .proof-bar {
+            display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;
+            padding: 2.5rem 2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
         }
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+        .proof-item { text-align: center; }
+        .proof-item .num { font-size: 1.6rem; font-weight: 800; color: var(--accent); }
+        .proof-item .label { font-size: 0.78rem; color: var(--text-3); margin-top: 0.15rem; }
+
+        /* --- VIDEO --- */
+        .video-section { text-align: center; }
+        .video-section h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800;
+            letter-spacing: -1px; margin-bottom: 0.75rem;
         }
-        .hero-visual {
-            margin-top: 4rem;
-            position: relative;
-        }
-        .hero-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            max-width: 700px;
-            margin: 0 auto;
+        .video-section .lead { color: var(--text-2); margin-bottom: 2.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .video-wrapper {
+            position: relative; max-width: 760px; margin: 0 auto;
+            border-radius: 16px; overflow: hidden;
             border: 1px solid var(--border);
+            background: var(--bg-card);
+            aspect-ratio: 16/9;
         }
-        .hero-grid-cell {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            text-align: center;
+        .video-placeholder {
+            width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            cursor: pointer; transition: background 0.3s;
         }
-        .hero-grid-cell .number {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: var(--gradient-2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .video-placeholder:hover { background: var(--bg-card-hover); }
+        .play-btn {
+            width: 72px; height: 72px; border-radius: 50%;
+            background: var(--accent); display: flex;
+            align-items: center; justify-content: center;
+            margin-bottom: 1rem; box-shadow: 0 0 30px var(--accent-glow);
+            transition: transform 0.2s;
         }
-        .hero-grid-cell .label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 0.25rem;
-        }
+        .video-placeholder:hover .play-btn { transform: scale(1.08); }
+        .play-btn svg { margin-left: 4px; }
+        .video-label { font-size: 0.85rem; color: var(--text-3); }
 
-        /* Sections */
-        section { padding: 6rem 2rem; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .section-label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent);
-            margin-bottom: 1rem;
+        /* --- HOW IT WORKS --- */
+        .how-section { background: var(--bg-alt); }
+        .how-section h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800;
+            letter-spacing: -1px; margin-bottom: 0.5rem; text-align: center;
         }
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            letter-spacing: -1.5px;
-            margin-bottom: 1rem;
-            line-height: 1.15;
+        .how-lead { color: var(--text-2); text-align: center; margin-bottom: 3rem; }
+        .steps { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 2.5rem; }
+        .step { display: flex; gap: 1.25rem; align-items: flex-start; }
+        .step-num {
+            flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
+            background: var(--bg-card); border: 2px solid var(--accent);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; font-weight: 800; color: var(--accent);
         }
-        .section-desc {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            line-height: 1.7;
-        }
-        .section-header {
-            margin-bottom: 4rem;
-        }
-        .section-header.center { text-align: center; }
-        .section-header.center .section-desc { margin: 0 auto; }
+        .step h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .step p { color: var(--text-2); font-size: 0.9rem; line-height: 1.55; }
 
-        /* Features grid */
+        /* --- TIME COMPARISON --- */
+        .comparison { text-align: center; }
+        .comparison h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800;
+            letter-spacing: -1px; margin-bottom: 0.5rem;
+        }
+        .comparison .lead { color: var(--text-2); margin-bottom: 3rem; }
+        .compare-bars { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
+        .compare-row { text-align: left; }
+        .compare-row .row-label {
+            display: flex; justify-content: space-between; align-items: baseline;
+            margin-bottom: 0.4rem; font-size: 0.9rem;
+        }
+        .compare-row .row-label span:last-child { color: var(--text-3); font-size: 0.8rem; }
+        .bar-track { width: 100%; height: 32px; background: var(--bg-card); border-radius: 8px; overflow: hidden; }
+        .bar-fill { height: 100%; border-radius: 8px; display: flex; align-items: center; padding-left: 0.75rem; font-size: 0.8rem; font-weight: 600; }
+        .bar-fill.manual { width: 100%; background: #ef4444; }
+        .bar-fill.other { width: 45%; background: #eab308; }
+        .bar-fill.ours { width: 8%; min-width: 60px; background: var(--green); }
+
+        /* --- FEATURES --- */
+        .features h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800;
+            letter-spacing: -1px; margin-bottom: 0.5rem; text-align: center;
+        }
+        .features .lead { color: var(--text-2); text-align: center; margin-bottom: 3rem; }
         .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 1.5rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
         }
-        .feature-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.3s;
+        .feat-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.5rem; transition: all 0.2s;
         }
-        .feature-card:hover {
-            background: var(--bg-card-hover);
-            border-color: #2a2a3d;
-            transform: translateY(-2px);
+        .feat-card:hover { background: var(--bg-card-hover); border-color: #2a2a3d; }
+        .feat-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+        .feat-card p { color: var(--text-2); font-size: 0.88rem; line-height: 1.55; }
+        .feat-tag {
+            display: inline-block; font-size: 0.65rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px;
+            padding: 0.2rem 0.5rem; border-radius: 4px; margin-bottom: 0.75rem;
         }
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.25rem;
-            font-size: 1.4rem;
-        }
-        .feature-icon.orange { background: rgba(246, 133, 31, 0.1); border: 1px solid rgba(246, 133, 31, 0.2); }
-        .feature-icon.blue { background: rgba(107, 138, 253, 0.1); border: 1px solid rgba(107, 138, 253, 0.2); }
-        .feature-icon.purple { background: rgba(167, 139, 250, 0.1); border: 1px solid rgba(167, 139, 250, 0.2); }
-        .feature-icon.green { background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.2); }
-        .feature-card h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
+        .feat-tag.core { background: rgba(246,133,31,0.15); color: var(--accent); }
+        .feat-tag.soon { background: rgba(107,138,253,0.15); color: var(--blue); }
+        .feat-tag.privacy { background: rgba(52,211,153,0.15); color: var(--green); }
 
-        /* How it works */
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            position: relative;
+        /* --- FAQ --- */
+        .faq-section { background: var(--bg-alt); }
+        .faq-section h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800;
+            letter-spacing: -1px; margin-bottom: 2.5rem; text-align: center;
         }
-        .step {
-            text-align: center;
-            padding: 2rem 1.5rem;
+        .faq-list { max-width: 640px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-q {
+            width: 100%; background: none; border: none; color: var(--text);
+            font-family: inherit; font-size: 0.95rem; font-weight: 600;
+            padding: 1.25rem 0; text-align: left; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .step-number {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 2px solid var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: var(--accent);
+        .faq-q:hover { color: var(--accent); }
+        .faq-q .arrow { transition: transform 0.2s; font-size: 0.8rem; color: var(--text-3); }
+        .faq-item.open .arrow { transform: rotate(180deg); }
+        .faq-a {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+            color: var(--text-2); font-size: 0.9rem; line-height: 1.6;
         }
-        .step h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-        .step p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
+        .faq-item.open .faq-a { max-height: 200px; }
+        .faq-a-inner { padding-bottom: 1.25rem; }
 
-        /* Use cases */
-        .usecases-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+        /* --- PRICING --- */
+        .pricing { text-align: center; }
+        .pricing h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800;
+            letter-spacing: -1px; margin-bottom: 0.5rem;
         }
-        .usecase-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
+        .pricing .lead { color: var(--text-2); margin-bottom: 3rem; }
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem; max-width: 800px; margin: 0 auto;
         }
-        .usecase-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--gradient-1);
-        }
-        .usecase-card h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-        .usecase-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-        .usecase-card ul {
-            list-style: none;
-        }
-        .usecase-card ul li {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            padding: 0.3rem 0;
-            padding-left: 1.25rem;
+        .price-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 14px; padding: 2rem 1.5rem; text-align: left;
             position: relative;
         }
-        .usecase-card ul li::before {
-            content: '>';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: 700;
+        .price-card.featured { border-color: var(--accent); }
+        .price-card.featured::before {
+            content: 'Best Value'; position: absolute; top: -10px; right: 16px;
+            background: var(--accent); color: #fff; font-size: 0.7rem;
+            font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 4px;
         }
+        .price-card .tier { font-size: 0.85rem; font-weight: 600; color: var(--text-2); margin-bottom: 0.5rem; }
+        .price-card .price { font-size: 2rem; font-weight: 800; margin-bottom: 0.25rem; }
+        .price-card .price small { font-size: 0.85rem; font-weight: 500; color: var(--text-3); }
+        .price-card .price-note { font-size: 0.78rem; color: var(--text-3); margin-bottom: 1.25rem; }
+        .price-card ul { list-style: none; margin-bottom: 1.5rem; }
+        .price-card ul li {
+            font-size: 0.85rem; color: var(--text-2);
+            padding: 0.35rem 0; padding-left: 1.25rem; position: relative;
+        }
+        .price-card ul li::before { content: '+'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+        .price-card .btn { width: 100%; justify-content: center; }
 
-        /* CTA */
-        .cta-section {
-            text-align: center;
-            padding: 8rem 2rem;
+        /* --- FINAL CTA --- */
+        .final-cta {
+            text-align: center; padding: 6rem 2rem;
             position: relative;
         }
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(246, 133, 31, 0.06) 0%, transparent 70%);
+        .final-cta::before {
+            content: ''; position: absolute;
+            bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(246,133,31,0.06) 0%, transparent 65%);
             pointer-events: none;
         }
-        .cta-section .section-title { max-width: 700px; margin: 0 auto 1rem; }
-        .cta-section .section-desc { margin: 0 auto 2.5rem; }
+        .final-cta h2 {
+            font-size: clamp(1.5rem, 3.5vw, 2.25rem); font-weight: 800;
+            letter-spacing: -1px; margin-bottom: 1rem; max-width: 600px;
+            margin-left: auto; margin-right: auto;
+        }
+        .final-cta .math {
+            color: var(--text-2); font-size: 0.95rem; line-height: 1.7;
+            max-width: 480px; margin: 0 auto 2rem;
+        }
+        .final-cta .math strong { color: var(--text); }
+        .trust-badges {
+            display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        .trust-badge {
+            font-size: 0.78rem; color: var(--text-3);
+            display: flex; align-items: center; gap: 0.35rem;
+        }
+        .trust-badge .check { color: var(--green); }
 
-        /* Logos */
-        .logos-section { padding: 4rem 2rem; border-top: 1px solid var(--border); }
-        .logos-label {
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-        .logos-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            opacity: 0.4;
-        }
-        .logos-row span {
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
-        }
-
-        /* Footer */
+        /* --- FOOTER --- */
         footer {
-            border-top: 1px solid var(--border);
-            padding: 3rem 2rem;
+            border-top: 1px solid var(--border); padding: 2.5rem 2rem;
         }
         .footer-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            max-width: 960px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
         }
-        .footer-inner p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-        .footer-links { display: flex; gap: 1.5rem; }
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.2s;
-        }
-        .footer-links a:hover { color: var(--text-secondary); }
+        .footer-inner p { color: var(--text-3); font-size: 0.8rem; }
+        .footer-links { display: flex; gap: 1.25rem; }
+        .footer-links a { color: var(--text-3); text-decoration: none; font-size: 0.8rem; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text-2); }
 
-        /* Mobile nav */
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-toggle { display: block; }
             .nav-links.open {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--bg-primary);
-                border-bottom: 1px solid var(--border);
-                padding: 1.5rem 2rem;
+                display: flex; flex-direction: column; position: absolute;
+                top: 100%; left: 0; right: 0; background: var(--bg);
+                border-bottom: 1px solid var(--border); padding: 1.5rem 2rem;
             }
-            .hero h1 { letter-spacing: -1px; }
-            .hero-grid { grid-template-columns: repeat(3, 1fr); }
+            .proof-bar { gap: 1.5rem; }
             .features-grid { grid-template-columns: 1fr; }
-            .steps { grid-template-columns: 1fr; }
-            .usecases-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; max-width: 340px; }
+            .trust-badges { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
     <div class="nav-inner">
         <div class="logo">agents<span>skills</span></div>
         <div class="nav-links" id="navLinks">
-            <a href="#features">Capabilities</a>
+            <a href="#features">Features</a>
             <a href="#how-it-works">How It Works</a>
-            <a href="#use-cases">Use Cases</a>
-            <a href="#cta" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.85rem;">Get Started</a>
+            <a href="#faq">FAQ</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#download" class="btn btn-primary btn-sm">Download Free Trial</a>
         </div>
         <button class="mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
     </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-    <div>
-        <div class="hero-badge">
-            <span class="dot"></span>
-            Now onboarding AI workers
-        </div>
-        <h1>Hire <span class="gradient">AI workers</span> that never stop delivering</h1>
-        <p>Deploy intelligent agents into your workforce. They learn your processes, integrate with your tools, and scale on demand &mdash; at a fraction of the cost.</p>
+    <div class="container">
+        <div class="hero-badge"><span class="dot"></span> Now in early access</div>
+        <h1>Stop doing the work <em>your computer</em> should be doing</h1>
+        <p class="subtitle">Agents Skills watches how you work, learns the repetitive patterns, and builds skills that handle them for you. Like a coworker that never forgets a step.</p>
         <div class="hero-buttons">
-            <a href="#cta" class="btn btn-primary">Start hiring agents &rarr;</a>
-            <a href="#how-it-works" class="btn btn-secondary">See how it works</a>
-        </div>
-        <div class="hero-visual">
-            <div class="hero-grid">
-                <div class="hero-grid-cell">
-                    <div class="number">10x</div>
-                    <div class="label">Faster output</div>
-                </div>
-                <div class="hero-grid-cell">
-                    <div class="number">24/7</div>
-                    <div class="label">Always available</div>
-                </div>
-                <div class="hero-grid-cell">
-                    <div class="number">90%</div>
-                    <div class="label">Cost reduction</div>
-                </div>
-            </div>
+            <a href="#download" class="btn btn-primary">Download Free Trial</a>
+            <a href="#demo" class="btn btn-ghost">Watch the 90s demo</a>
         </div>
     </div>
 </section>
 
-<section class="logos-section">
-    <div class="logos-label">Trusted by forward-thinking teams</div>
-    <div class="logos-row">
-        <span>FINTECH CO</span>
-        <span>HEALTHTECH</span>
-        <span>LOGISTICSX</span>
-        <span>RETAILAI</span>
-        <span>SCALEOPS</span>
+<!-- PROOF BAR -->
+<div class="proof-bar">
+    <div class="proof-item">
+        <div class="num">~10x</div>
+        <div class="label">faster than doing it yourself</div>
     </div>
-</section>
+    <div class="proof-item">
+        <div class="num">100%</div>
+        <div class="label">local &amp; private</div>
+    </div>
+    <div class="proof-item">
+        <div class="num">0</div>
+        <div class="label">cloud accounts needed</div>
+    </div>
+</div>
 
-<section id="features">
+<!-- VIDEO DEMO -->
+<section class="video-section" id="demo">
     <div class="container">
-        <div class="section-header">
-            <div class="section-label">Capabilities</div>
-            <h2 class="section-title">Agents that work like<br>your best employees</h2>
-            <p class="section-desc">Our AI workers are trained to understand context, follow your workflows, and deliver results autonomously.</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon orange">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f6851f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        <h2>See it in action</h2>
+        <p class="lead">90 seconds. No fluff. Watch a real workflow get automated.</p>
+        <div class="video-wrapper">
+            <div class="video-placeholder" id="videoPlaceholder">
+                <div class="play-btn">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                 </div>
-                <h3>Deep Integration</h3>
-                <p>Agents plug into your existing tools &mdash; Slack, Jira, GitHub, Salesforce, HubSpot, and hundreds more. No migration needed.</p>
+                <span class="video-label">Watch the demo (1:30)</span>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon blue">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6b8afd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                </div>
-                <h3>Always On</h3>
-                <p>Your AI workforce operates around the clock across every timezone. No sick days, no downtime, no burnout. Just consistent output.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon purple">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                </div>
-                <h3>Quality Assured</h3>
-                <p>Built-in verification loops and human-in-the-loop checkpoints ensure every output meets your standards before delivery.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon green">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-                </div>
-                <h3>Elastic Scaling</h3>
-                <p>Spin up 10 or 10,000 agents in minutes. Scale your workforce up during peak demand, scale down when things are quiet.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon orange">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f6851f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                </div>
-                <h3>Enterprise Security</h3>
-                <p>SOC 2 compliant infrastructure. Your data never leaves your environment. Role-based access, audit logs, and encryption at rest.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon blue">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6b8afd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                </div>
-                <h3>Human + AI Teams</h3>
-                <p>Agents don't replace your people &mdash; they amplify them. Build hybrid teams where humans handle strategy and agents handle execution.</p>
-            </div>
+            <!-- Replace with: <iframe src="YOUR_VIDEO_URL" ...></iframe> -->
         </div>
     </div>
 </section>
 
-<section id="how-it-works" style="background: var(--bg-secondary);">
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how-it-works">
     <div class="container">
-        <div class="section-header center">
-            <div class="section-label">How It Works</div>
-            <h2 class="section-title">From signup to deployed<br>in under an hour</h2>
-            <p class="section-desc">Getting your first AI worker up and running is simple. No ML expertise required.</p>
-        </div>
+        <h2>How it works</h2>
+        <p class="how-lead">Three steps. No setup wizard. No config files.</p>
         <div class="steps">
             <div class="step">
-                <div class="step-number">1</div>
-                <h3>Define the Role</h3>
-                <p>Describe the job in plain English. What tools should the agent use? What does a good output look like?</p>
+                <div class="step-num">1</div>
+                <div>
+                    <h3>Work like you normally do</h3>
+                    <p>Open the app and start working. Agents Skills runs in the background and watches the patterns in your workflow &mdash; the clicks, the copy-pastes, the file moves.</p>
+                </div>
             </div>
             <div class="step">
-                <div class="step-number">2</div>
-                <h3>Connect Your Stack</h3>
-                <p>Link your existing tools and data sources. Agents work inside your environment with your permissions.</p>
+                <div class="step-num">2</div>
+                <div>
+                    <h3>It builds a skill</h3>
+                    <p>When it spots a repeatable pattern, it creates a "skill" &mdash; a reusable automation. You review it, tweak if needed, and approve.</p>
+                </div>
             </div>
             <div class="step">
-                <div class="step-number">3</div>
-                <h3>Train &amp; Calibrate</h3>
-                <p>Review a few sample outputs, give feedback, and watch your agent improve with every iteration.</p>
-            </div>
-            <div class="step">
-                <div class="step-number">4</div>
-                <h3>Deploy &amp; Scale</h3>
-                <p>Put your agent to work. Monitor performance in real-time and scale up as confidence grows.</p>
+                <div class="step-num">3</div>
+                <div>
+                    <h3>Let it handle the rest</h3>
+                    <p>Next time that task comes up, trigger the skill and watch it run. Or set it to run automatically. You just got a coworker.</p>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="use-cases">
+<!-- TIME COMPARISON -->
+<section class="comparison">
     <div class="container">
-        <div class="section-header">
-            <div class="section-label">Use Cases</div>
-            <h2 class="section-title">Every department, supercharged</h2>
-            <p class="section-desc">AI workers that handle the work your team shouldn't spend time on.</p>
-        </div>
-        <div class="usecases-grid">
-            <div class="usecase-card">
-                <h3>Customer Support</h3>
-                <p>Agents that resolve tickets, answer questions, and escalate intelligently.</p>
-                <ul>
-                    <li>L1/L2 ticket resolution</li>
-                    <li>Multi-language support</li>
-                    <li>Smart escalation routing</li>
-                </ul>
+        <h2>Your time is worth more than this</h2>
+        <p class="lead">Processing 50 weekly repetitive tasks</p>
+        <div class="compare-bars">
+            <div class="compare-row">
+                <div class="row-label"><span>Doing it manually</span><span>~4 hours &middot; 1x</span></div>
+                <div class="bar-track"><div class="bar-fill manual">4h</div></div>
             </div>
-            <div class="usecase-card">
-                <h3>Sales &amp; Outreach</h3>
-                <p>Agents that research leads, write personalized emails, and book meetings.</p>
-                <ul>
-                    <li>Lead qualification</li>
-                    <li>Personalized sequences</li>
-                    <li>CRM data enrichment</li>
-                </ul>
+            <div class="compare-row">
+                <div class="row-label"><span>Macros &amp; scripts</span><span>~1.5 hours &middot; 2.7x</span></div>
+                <div class="bar-track"><div class="bar-fill other">1.5h</div></div>
             </div>
-            <div class="usecase-card">
-                <h3>Data Operations</h3>
-                <p>Agents that clean, transform, and analyze data across your systems.</p>
-                <ul>
-                    <li>ETL pipeline management</li>
-                    <li>Report generation</li>
-                    <li>Anomaly detection</li>
-                </ul>
-            </div>
-            <div class="usecase-card">
-                <h3>Software Engineering</h3>
-                <p>Agents that write code, review PRs, fix bugs, and maintain documentation.</p>
-                <ul>
-                    <li>Code review &amp; testing</li>
-                    <li>Bug triage &amp; fixes</li>
-                    <li>CI/CD maintenance</li>
-                </ul>
+            <div class="compare-row">
+                <div class="row-label"><span>Agents Skills</span><span>~20 min &middot; 12x</span></div>
+                <div class="bar-track"><div class="bar-fill ours">20m</div></div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="cta-section" id="cta">
+<!-- FEATURES -->
+<section class="features" id="features">
     <div class="container">
-        <div class="section-label">Get Started</div>
-        <h2 class="section-title">Ready to hire your first AI worker?</h2>
-        <p class="section-desc">Join companies already scaling their teams with intelligent agents. Start with one agent, expand to hundreds.</p>
+        <h2>Built for people who actually work</h2>
+        <p class="lead">Not another dashboard. A tool that sits next to you.</p>
+        <div class="features-grid">
+            <div class="feat-card">
+                <div class="feat-tag core">Core</div>
+                <h3>Workflow Recording</h3>
+                <p>Records your screen interactions and detects repeatable sequences automatically. No scripting required.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-tag core">Core</div>
+                <h3>Skill Builder</h3>
+                <p>Turns recorded patterns into reusable skills you can trigger with a shortcut, a schedule, or a file drop.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-tag privacy">Privacy</div>
+                <h3>100% Local Processing</h3>
+                <p>Everything runs on your machine. No data leaves your computer. No cloud. No accounts. No tracking.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-tag core">Core</div>
+                <h3>Smart Triggers</h3>
+                <p>Skills can run on a schedule, when a file appears in a folder, when you press a hotkey, or when another skill finishes.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-tag soon">Coming Soon</div>
+                <h3>Team Sharing</h3>
+                <p>Export skills and share them with your team. Everyone automates the same way, no one reinvents the wheel.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-tag soon">Coming Soon</div>
+                <h3>AI Fine-Tuning</h3>
+                <p>Correct a skill once and it learns. Over time, skills adapt to edge cases without you having to think about them.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+    <div class="container">
+        <h2>Questions</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                    What operating systems are supported?
+                    <span class="arrow">&#9662;</span>
+                </button>
+                <div class="faq-a"><div class="faq-a-inner">
+                    Windows and macOS are supported today. Linux support is coming soon.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                    Is my data sent to the cloud?
+                    <span class="arrow">&#9662;</span>
+                </button>
+                <div class="faq-a"><div class="faq-a-inner">
+                    No. Everything runs locally on your machine. We don't have servers that receive your data. Your workflows, recordings, and skills never leave your computer.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                    What kind of tasks can it automate?
+                    <span class="arrow">&#9662;</span>
+                </button>
+                <div class="faq-a"><div class="faq-a-inner">
+                    Any repetitive workflow on your desktop: data entry, file organization, report generation, email processing, spreadsheet updates, form filling, image resizing &mdash; if you do it the same way twice, it can learn it.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                    How is this different from macros?
+                    <span class="arrow">&#9662;</span>
+                </button>
+                <div class="faq-a"><div class="faq-a-inner">
+                    Macros replay exact clicks and keystrokes. Agents Skills understands the intent of your workflow, so it handles variations &mdash; different file names, changed layouts, extra steps &mdash; without breaking.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                    Can I try it before buying?
+                    <span class="arrow">&#9662;</span>
+                </button>
+                <div class="faq-a"><div class="faq-a-inner">
+                    Yes. Download is free and includes unlimited skill creation. You only need a license to run skills in the background or on a schedule.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                    Do I need an internet connection?
+                    <span class="arrow">&#9662;</span>
+                </button>
+                <div class="faq-a"><div class="faq-a-inner">
+                    Only for initial download and license activation. After that, it works fully offline.
+                </div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+    <div class="container">
+        <h2>Simple pricing. No subscriptions needed.</h2>
+        <p class="lead">Free to try. Pay once if you love it.</p>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <div class="tier">Free</div>
+                <div class="price">$0</div>
+                <div class="price-note">No credit card required</div>
+                <ul>
+                    <li>Unlimited skill creation</li>
+                    <li>Manual skill triggers</li>
+                    <li>100% local processing</li>
+                    <li>Community support</li>
+                </ul>
+                <a href="#download" class="btn btn-ghost">Download Free</a>
+            </div>
+            <div class="price-card">
+                <div class="tier">Monthly</div>
+                <div class="price">$15<small>/mo</small></div>
+                <div class="price-note">Cancel anytime</div>
+                <ul>
+                    <li>Everything in Free</li>
+                    <li>Background execution</li>
+                    <li>Scheduled triggers</li>
+                    <li>Priority support</li>
+                </ul>
+                <a href="#download" class="btn btn-ghost">Start Free Trial</a>
+            </div>
+            <div class="price-card featured">
+                <div class="tier">Lifetime</div>
+                <div class="price">$49 <small>early bird</small></div>
+                <div class="price-note">One-time payment. Forever.</div>
+                <ul>
+                    <li>Everything in Monthly</li>
+                    <li>All future updates</li>
+                    <li>Team sharing (when released)</li>
+                    <li>2 machine activations</li>
+                </ul>
+                <a href="#download" class="btn btn-primary">Get Lifetime Access</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="download">
+    <div class="container">
+        <h2>You're spending hours a week on tasks a computer can handle</h2>
+        <div class="math">
+            Say you waste <strong>5 hours/week</strong> on repetitive work.<br>
+            That's <strong>260 hours a year</strong>.<br>
+            At $50/hr, that's <strong>$13,000</strong> in lost productivity.<br>
+            Agents Skills gives you most of that back.
+        </div>
         <div class="hero-buttons">
-            <a href="mailto:hello@agents-skills.com" class="btn btn-primary">Contact Sales &rarr;</a>
-            <a href="#features" class="btn btn-secondary">Learn more</a>
+            <a href="#" class="btn btn-primary">Download Free Trial</a>
+            <a href="#pricing" class="btn btn-ghost">See pricing</a>
+        </div>
+        <div class="trust-badges">
+            <span class="trust-badge"><span class="check">&#10003;</span> Free to try</span>
+            <span class="trust-badge"><span class="check">&#10003;</span> 14-day money back</span>
+            <span class="trust-badge"><span class="check">&#10003;</span> One-time payment</span>
+            <span class="trust-badge"><span class="check">&#10003;</span> 100% local &amp; private</span>
         </div>
     </div>
 </section>
@@ -687,6 +624,7 @@
             <a href="mailto:hello@agents-skills.com">Contact</a>
             <a href="#">Privacy</a>
             <a href="#">Terms</a>
+            <a href="#">Refund Policy</a>
         </div>
     </div>
 </footer>
