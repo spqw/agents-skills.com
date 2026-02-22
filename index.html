@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agents Skills - Your AI coworker that learns how you work</title>
     <meta name="description" content="Stop doing repetitive tasks. Agents Skills watches your workflow, learns the patterns, and handles them for you. 100% local. Free to try.">
+    <meta property="og:title" content="Agents Skills - Your AI coworker that learns how you work">
+    <meta property="og:description" content="Desktop app that watches your workflow, learns the patterns, and automates them. 100% local. Free to try.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://agents-skills.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Agents Skills - Your AI coworker that learns how you work">
+    <meta name="twitter:description" content="Stop doing repetitive tasks. Your computer learns how you work and handles them for you.">
+    <link rel="canonical" href="https://agents-skills.com">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Agents Skills","applicationCategory":"BusinessApplication","operatingSystem":"Windows, macOS","description":"Desktop app that watches your workflow, learns repetitive patterns, and automates them locally.","offers":[{"@type":"Offer","price":"0","priceCurrency":"USD","description":"Free trial"},{"@type":"Offer","price":"49","priceCurrency":"USD","description":"Lifetime license"}],"url":"https://agents-skills.com"}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -604,10 +615,13 @@
             At $50/hr, that's <strong>$13,000</strong> in lost productivity.<br>
             Agents Skills gives you most of that back.
         </div>
-        <div class="hero-buttons">
-            <a href="#" class="btn btn-primary">Download Free Trial</a>
-            <a href="#pricing" class="btn btn-ghost">See pricing</a>
-        </div>
+        <form class="email-form" id="waitlistForm" onsubmit="return handleWaitlist(event)">
+            <div style="display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;max-width:460px;margin:0 auto">
+                <input type="email" name="email" placeholder="you@company.com" required style="flex:1;min-width:220px;padding:0.75rem 1rem;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);color:var(--text);font-family:inherit;font-size:0.95rem;outline:none">
+                <button type="submit" class="btn btn-primary">Get Early Access</button>
+            </div>
+            <p id="formMsg" style="font-size:0.8rem;color:var(--green);margin-top:0.75rem;min-height:1.2em"></p>
+        </form>
         <div class="trust-badges">
             <span class="trust-badge"><span class="check">&#10003;</span> Free to try</span>
             <span class="trust-badge"><span class="check">&#10003;</span> 14-day money back</span>
@@ -629,5 +643,19 @@
     </div>
 </footer>
 
+<script>
+function handleWaitlist(e) {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const msg = document.getElementById('formMsg');
+    // Store locally and show success (replace with real API later)
+    const list = JSON.parse(localStorage.getItem('waitlist') || '[]');
+    list.push({email, ts: new Date().toISOString()});
+    localStorage.setItem('waitlist', JSON.stringify(list));
+    msg.textContent = 'You\'re on the list! We\'ll email you when it\'s ready.';
+    e.target.email.value = '';
+    return false;
+}
+</script>
 </body>
 </html>
