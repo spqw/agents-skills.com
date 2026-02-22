@@ -29,7 +29,8 @@ Sat Feb 22 2026 — Ralph Iteration 1 (retry): SEO foundation + comparison conte
   - `/dev-recipes/` — 10 copy-paste code cheatsheets (curl, Docker, git, regex, cron, SSH, jq, awk, systemd, nginx)
   - `/llm-benchmark/` — LLM comparison page targeting "Claude vs GPT-4" searches
   - `/vs/vs-keyboard-maestro.html` — Agents Skills vs Keyboard Maestro comparison
-- Updated `sitemap.xml` with all 5 pages (home, compare, dev-recipes, llm-benchmark, vs-keyboard-maestro)
+  - `/vs/vs-zapier.html` — Agents Skills vs Zapier comparison
+- Updated `sitemap.xml` with all 6 pages (home, compare, dev-recipes, llm-benchmark, vs-keyboard-maestro, vs-zapier)
 - Added internal navigation links on homepage: "Dev Recipes" in nav, "Dev Recipes" + "LLM Benchmark" in footer
 - Net result: went from 1 deployed page to 5 deployed pages in one push
 Sun Feb 22 2026 — Ralph Iteration 2: Fixed broken Dockerfile + shipped 4 undeployed content pages
