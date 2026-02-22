@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dev.recipes — Copy-Paste Code Recipes for Developers</title>
+<meta name="description" content="Copy-paste code recipes for developers. Curated cheatsheets for curl, Docker Compose, git, regex, cron, SSH, jq, awk, systemd, and nginx. Bookmark-worthy dev reference.">
+<meta name="keywords" content="developer cheatsheet, code recipes, curl examples, docker compose, git undo, regex cheatsheet, cron syntax, ssh recipes, jq recipes, awk one-liners, systemd cheatsheet, nginx config">
+<meta name="author" content="dev.recipes">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://dev.recipes/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dev.recipes/">
+<meta property="og:title" content="dev.recipes — Copy-Paste Code Recipes for Developers">
+<meta property="og:description" content="Copy-paste code recipes for developers. Curated cheatsheets for curl, Docker, git, regex, cron, SSH, jq, awk, systemd, and nginx.">
+<meta property="og:site_name" content="dev.recipes">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="dev.recipes — Copy-Paste Code Recipes for Developers">
+<meta name="twitter:description" content="Copy-paste code recipes for developers. Curated cheatsheets for curl, Docker, git, regex, cron, SSH, jq, awk, systemd, and nginx.">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "dev.recipes — Copy-Paste Code Recipes for Developers",
+  "description": "Copy-paste code recipes for developers. Curated cheatsheets for curl, Docker Compose, git, regex, cron, SSH, jq, awk, systemd, and nginx.",
+  "url": "https://dev.recipes/",
+  "inLanguage": "en",
+  "publisher": {
+    "@type": "Organization",
+    "name": "agents-skills.com",
+    "url": "https://agents-skills.com"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Developer Code Recipes",
+    "numberOfItems": 10,
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "curl Recipes"},
+      {"@type": "ListItem", "position": 2, "name": "Docker Compose Cheatsheet"},
+      {"@type": "ListItem", "position": 3, "name": "git Undo Everything"},
+      {"@type": "ListItem", "position": 4, "name": "Regex Cheatsheet"},
+      {"@type": "ListItem", "position": 5, "name": "Cron Syntax"},
+      {"@type": "ListItem", "position": 6, "name": "SSH Recipes"},
+      {"@type": "ListItem", "position": 7, "name": "jq Recipes"},
+      {"@type": "ListItem", "position": 8, "name": "awk One-Liners"},
+      {"@type": "ListItem", "position": 9, "name": "systemd Cheatsheet"},
+      {"@type": "ListItem", "position": 10, "name": "nginx Config Recipes"}
+    ]
+  }
+}
+</script>
+
+<!-- Inter Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0b0b11;
+  color: #f0f0f5;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0b11;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a3a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a4a;
+}
+
+/* ===== STICKY NAV ===== */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11, 11, 17, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(246, 133, 31, 0.15);
+}
+
+.nav-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 56px;
+}
+
+.nav-logo {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #f6851f;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-right: 20px;
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  flex: 1;
+  padding: 4px 0;
+}
+
+.nav-links::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-links a {
+  color: #8888a0;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: color 0.2s, background 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #f0f0f5;
+  background: rgba(246, 133, 31, 0.1);
+}
+
+/* ===== HERO ===== */
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 20px 40px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.hero h1 span {
+  color: #f6851f;
+}
+
+.hero p {
+  color: #8888a0;
+  font-size: 1.05rem;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* ===== MAIN CONTENT ===== */
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
+
+/* ===== RECIPE SECTION ===== */
+.recipe {
+  margin-bottom: 64px;
+}
+
+.recipe-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #1a1a2a;
+}
+
+.recipe-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.recipe-header h2 a {
+  color: #f0f0f5;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.recipe-header h2 a:hover {
+  color: #f6851f;
+}
+
+.recipe-number {
+  background: rgba(246, 133, 31, 0.12);
+  color: #f6851f;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+.recipe-item {
+  margin-bottom: 24px;
+}
+
+.recipe-item h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #c0c0d0;
+  margin-bottom: 8px;
+}
+
+.recipe-item p {
+  font-size: 0.85rem;
+  color: #7777a0;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+/* ===== CODE BLOCKS ===== */
+.code-wrap {
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.code-wrap pre {
+  background: #12121c;
+  border: 1px solid #1e1e30;
+  border-radius: 8px;
+  padding: 16px 52px 16px 16px;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: #d0d0e0;
+  tab-size: 2;
+}
+
+.code-wrap pre code {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(246, 133, 31, 0.1);
+  border: 1px solid rgba(246, 133, 31, 0.2);
+  color: #f6851f;
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 2;
+}
+
+.copy-btn:hover {
+  background: rgba(246, 133, 31, 0.2);
+  border-color: rgba(246, 133, 31, 0.4);
+}
+
+.copy-btn.copied {
+  background: rgba(80, 200, 120, 0.15);
+  border-color: rgba(80, 200, 120, 0.3);
+  color: #50c878;
+}
+
+/* ===== SYNTAX HIGHLIGHTING ===== */
+.kw { color: #c792ea; }
+.str { color: #c3e88d; }
+.cm { color: #546e7a; }
+.flag { color: #82aaff; }
+.var { color: #f78c6c; }
+.url { color: #89ddff; }
+
+/* ===== FOOTER ===== */
+.footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 20px;
+  border-top: 1px solid #1a1a2a;
+  text-align: center;
+  color: #5555770;
+  font-size: 0.85rem;
+}
+
+.footer a {
+  color: #f6851f;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.footer a:hover {
+  opacity: 0.8;
+}
+
+.footer p {
+  color: #555577;
+}
+
+/* ===== BACK TO TOP ===== */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 42px;
+  height: 42px;
+  background: rgba(246, 133, 31, 0.15);
+  border: 1px solid rgba(246, 133, 31, 0.25);
+  border-radius: 10px;
+  color: #f6851f;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  z-index: 50;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background: rgba(246, 133, 31, 0.25);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .nav-inner {
+    height: 48px;
+  }
+  .nav-logo {
+    font-size: 0.95rem;
+    margin-right: 12px;
+  }
+  .nav-links a {
+    font-size: 0.72rem;
+    padding: 5px 8px;
+  }
+  .hero {
+    padding: 40px 16px 28px;
+  }
+  .hero p {
+    font-size: 0.95rem;
+  }
+  .content {
+    padding: 0 16px 60px;
+  }
+  .recipe-header h2 {
+    font-size: 1.25rem;
+  }
+  .code-wrap pre {
+    font-size: 0.75rem;
+    padding: 14px 44px 14px 14px;
+    border-radius: 6px;
+  }
+  .recipe {
+    margin-bottom: 48px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">dev.recipes</a>
+    <div class="nav-links">
+      <a href="#curl">curl</a>
+      <a href="#docker">Docker</a>
+      <a href="#git">git</a>
+      <a href="#regex">Regex</a>
+      <a href="#cron">Cron</a>
+      <a href="#ssh">SSH</a>
+      <a href="#jq">jq</a>
+      <a href="#awk">awk</a>
+      <a href="#systemd">systemd</a>
+      <a href="#nginx">nginx</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <h1><span>dev.recipes</span> — Copy-Paste Code Recipes for Developers</h1>
+  <p>10 curated cheatsheets. Click any code block to copy. Bookmark this page.</p>
+</header>
+
+<!-- ===== CONTENT ===== -->
+<main class="content">
+
+<!-- ============================================================ -->
+<!-- 1. CURL RECIPES -->
+<!-- ============================================================ -->
+<section class="recipe" id="curl">
+  <div class="recipe-header">
+    <span class="recipe-number">01</span>
+    <h2><a href="#curl">curl Recipes</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>POST JSON data</h3>
+    <p>Send a JSON payload to an API endpoint with the correct Content-Type header.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code>curl -X POST https://api.example.com/users \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Jane Doe", "email": "jane@example.com"}'</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Upload a file</h3>
+    <p>Upload a file using multipart form data. The <code>@</code> prefix tells curl to read from a file.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code>curl -X POST https://api.example.com/upload \
+  -F "file=@/path/to/document.pdf" \
+  -F "description=Quarterly report"</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Follow redirects</h3>
+    <p>Follow HTTP redirects automatically. <code>-L</code> follows redirects, <code>-o</code> saves to a file.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Follow redirects and show final URL
+curl -L -w "%{url_effective}\n" -o /dev/null -s https://short.url/abc
+
+# Follow redirects with a maximum limit
+curl -L --max-redirs 5 https://example.com/page</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Authentication headers</h3>
+    <p>Pass Bearer tokens, Basic auth, or custom API keys in request headers.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Bearer token
+curl -H "Authorization: Bearer YOUR_TOKEN_HERE" \
+  https://api.example.com/protected
+
+# Basic auth
+curl -u username:password https://api.example.com/login
+
+# Custom API key header
+curl -H "X-API-Key: your-api-key" https://api.example.com/data</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Download a file with progress</h3>
+    <p>Download a file to disk, resume interrupted downloads, and limit bandwidth.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Download with progress bar
+curl -# -o output.tar.gz https://example.com/file.tar.gz
+
+# Resume interrupted download
+curl -C - -o output.tar.gz https://example.com/file.tar.gz
+
+# Limit download speed to 1MB/s
+curl --limit-rate 1M -o output.tar.gz https://example.com/file.tar.gz</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 2. DOCKER COMPOSE CHEATSHEET -->
+<!-- ============================================================ -->
+<section class="recipe" id="docker">
+  <div class="recipe-header">
+    <span class="recipe-number">02</span>
+    <h2><a href="#docker">Docker Compose Cheatsheet</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>PostgreSQL + Redis + App stack</h3>
+    <p>Production-ready Compose file with PostgreSQL, Redis, and your app with healthchecks and proper networking.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code>services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgres://app:secret@postgres:5432/mydb
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: mydb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d mydb"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  pgdata:
+  redisdata:</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Nginx reverse proxy</h3>
+    <p>Nginx as a reverse proxy in front of your app with SSL termination support.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code>services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+    depends_on:
+      - app
+
+  app:
+    build: .
+    expose:
+      - "3000"</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Multi-stage Dockerfile</h3>
+    <p>Efficient multi-stage build that keeps the final image small. Build stage installs deps, final stage copies only what is needed.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Build stage
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+RUN npm run build
+
+# Production stage
+FROM node:20-alpine
+WORKDIR /app
+RUN addgroup -g 1001 appgroup && adduser -u 1001 -G appgroup -s /bin/sh -D appuser
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./
+USER appuser
+EXPOSE 3000
+CMD ["node", "dist/index.js"]</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Useful Compose commands</h3>
+    <p>Essential commands for managing your Compose stack.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Start in background
+docker compose up -d
+
+# Rebuild and start
+docker compose up -d --build
+
+# View logs (follow mode)
+docker compose logs -f app
+
+# Stop and remove everything including volumes
+docker compose down -v
+
+# Scale a service
+docker compose up -d --scale worker=3
+
+# Execute command in running container
+docker compose exec app sh</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. GIT UNDO EVERYTHING -->
+<!-- ============================================================ -->
+<section class="recipe" id="git">
+  <div class="recipe-header">
+    <span class="recipe-number">03</span>
+    <h2><a href="#git">git Undo Everything</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Undo last commit (keep changes)</h3>
+    <p>Moves HEAD back one commit but keeps your changes staged. Use <code>--mixed</code> to unstage them too.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Undo commit, keep changes staged
+git reset --soft HEAD~1
+
+# Undo commit, keep changes unstaged
+git reset --mixed HEAD~1
+
+# Undo commit, discard changes (DESTRUCTIVE)
+git reset --hard HEAD~1</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Unstage files</h3>
+    <p>Remove files from the staging area without losing changes.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Unstage a specific file
+git restore --staged myfile.js
+
+# Unstage all files
+git restore --staged .
+
+# Discard changes in working directory (DESTRUCTIVE)
+git restore myfile.js</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Undo a push</h3>
+    <p>Revert a commit that was already pushed to remote. This creates a new commit that undoes the changes.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Revert the last pushed commit (safe, creates new commit)
+git revert HEAD
+git push
+
+# Revert a specific commit by hash
+git revert abc1234
+git push</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Recover deleted branch</h3>
+    <p>Use the reflog to find the last commit of a deleted branch and restore it.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Find the commit hash of deleted branch
+git reflog | grep "branch-name"
+
+# Recreate the branch at that commit
+git checkout -b branch-name abc1234
+
+# Or recover from remote
+git checkout -b branch-name origin/branch-name</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Reset local branch to match remote</h3>
+    <p>Discard all local changes and commits, making your branch identical to the remote.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Fetch latest from remote
+git fetch origin
+
+# Reset to match remote (DESTRUCTIVE - loses local changes)
+git reset --hard origin/main
+
+# Clean untracked files and directories
+git clean -fd</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. REGEX CHEATSHEET -->
+<!-- ============================================================ -->
+<section class="recipe" id="regex">
+  <div class="recipe-header">
+    <span class="recipe-number">04</span>
+    <h2><a href="#regex">Regex Cheatsheet</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Email address</h3>
+    <p>Matches most valid email addresses. For production use, consider a dedicated email validation library.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Pattern
+^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
+
+# Matches:    user@example.com, jane.doe+tag@sub.domain.org
+# No match:   @example.com, user@, user@.com</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>URL</h3>
+    <p>Matches HTTP and HTTPS URLs with optional port, path, query string, and fragment.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Pattern
+https?:\/\/[a-zA-Z0-9.-]+(?:\:[0-9]{1,5})?(?:\/[^\s]*)?
+
+# Matches:    https://example.com, http://localhost:3000/api/v1?key=val
+# No match:   ftp://files.example.com, example.com</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>IPv4 address</h3>
+    <p>Matches valid IPv4 addresses (0.0.0.0 to 255.255.255.255).</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Pattern
+^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$
+
+# Matches:    192.168.1.1, 10.0.0.255, 0.0.0.0
+# No match:   256.1.1.1, 192.168.1, 1.2.3.4.5</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Phone number (international)</h3>
+    <p>Matches phone numbers in common formats. Adjust for specific country requirements.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># US format
+^\+?1?[-.\s]?\(?[0-9]{3}\)?[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}$
+
+# Matches:    +1 (555) 123-4567, 555.123.4567, 5551234567
+# No match:   123-45, +1 555 123 456 789
+
+# International (E.164)
+^\+[1-9]\d{6,14}$
+
+# Matches:    +14155551234, +442071234567</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Date patterns</h3>
+    <p>Matches common date formats. Always validate the actual date values in application code.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># YYYY-MM-DD (ISO 8601)
+^\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\d|3[01])$
+# Matches:    2024-01-15, 2023-12-31
+
+# MM/DD/YYYY
+^(?:0[1-9]|1[0-2])\/(?:0[1-9]|[12]\d|3[01])\/\d{4}$
+# Matches:    01/15/2024, 12/31/2023
+
+# DD-Mon-YYYY
+^(?:0[1-9]|[12]\d|3[01])-(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-\d{4}$
+# Matches:    15-Jan-2024, 31-Dec-2023</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 5. CRON SYNTAX -->
+<!-- ============================================================ -->
+<section class="recipe" id="cron">
+  <div class="recipe-header">
+    <span class="recipe-number">05</span>
+    <h2><a href="#cron">Cron Syntax</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Cron format reference</h3>
+    <p>Five fields: minute (0-59), hour (0-23), day of month (1-31), month (1-12), day of week (0-7, 0 and 7 = Sunday).</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># ┌───────── minute (0-59)
+# │ ┌───────── hour (0-23)
+# │ │ ┌───────── day of month (1-31)
+# │ │ │ ┌───────── month (1-12)
+# │ │ │ │ ┌───────── day of week (0-7, Sun=0 or 7)
+# │ │ │ │ │
+# * * * * *  command</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Common schedules</h3>
+    <p>Ready-to-use cron expressions for the most common scheduling needs.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Every minute
+* * * * *  /path/to/script.sh
+
+# Every 5 minutes
+*/5 * * * *  /path/to/script.sh
+
+# Every hour (at minute 0)
+0 * * * *  /path/to/script.sh
+
+# Every day at midnight
+0 0 * * *  /path/to/script.sh
+
+# Every day at 2:30 AM
+30 2 * * *  /path/to/script.sh
+
+# Every Sunday at 3 AM
+0 3 * * 0  /path/to/script.sh
+
+# Every weekday at 9 AM
+0 9 * * 1-5  /path/to/script.sh
+
+# First day of every month at midnight
+0 0 1 * *  /path/to/script.sh
+
+# Every 15 minutes during business hours (Mon-Fri, 9-17)
+*/15 9-17 * * 1-5  /path/to/script.sh</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>First Monday of the month</h3>
+    <p>Cron cannot express "first Monday" directly. Use a day-of-month range combined with day-of-week, or check inside the script.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Run at 9 AM on days 1-7 but only if it's Monday
+0 9 1-7 * 1  /path/to/script.sh
+
+# Alternative: check inside the script
+0 9 * * 1  [ "$(date +\%d)" -le 7 ] && /path/to/script.sh</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Manage crontab</h3>
+    <p>Commands for viewing, editing, and managing the cron table.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Edit current user's crontab
+crontab -e
+
+# List current crontab entries
+crontab -l
+
+# Remove all crontab entries (DESTRUCTIVE)
+crontab -r
+
+# Edit crontab for a different user (as root)
+crontab -u username -e
+
+# Log output to a file
+0 2 * * * /path/to/script.sh >> /var/log/myscript.log 2>&1</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 6. SSH RECIPES -->
+<!-- ============================================================ -->
+<section class="recipe" id="ssh">
+  <div class="recipe-header">
+    <span class="recipe-number">06</span>
+    <h2><a href="#ssh">SSH Recipes</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Generate SSH key</h3>
+    <p>Generate an Ed25519 key (recommended) or RSA key and add it to the SSH agent.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Generate Ed25519 key (recommended)
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
+# Generate RSA 4096-bit key (wider compatibility)
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+# Add key to SSH agent
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+
+# Copy public key to clipboard (macOS)
+pbcopy < ~/.ssh/id_ed25519.pub
+
+# Copy public key to clipboard (Linux with xclip)
+xclip -sel clipboard < ~/.ssh/id_ed25519.pub</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>SSH config file</h3>
+    <p>Configure hosts in <code>~/.ssh/config</code> to simplify connections. Use <code>ssh myserver</code> instead of typing the full command.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># ~/.ssh/config
+
+Host myserver
+    HostName 203.0.113.50
+    User deploy
+    Port 2222
+    IdentityFile ~/.ssh/id_ed25519
+
+Host staging
+    HostName staging.example.com
+    User ubuntu
+    IdentityFile ~/.ssh/staging_key
+    ForwardAgent yes
+
+Host *
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+    AddKeysToAgent yes</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>SSH tunneling / port forwarding</h3>
+    <p>Access remote services through encrypted tunnels. Local forwarding makes a remote port available locally.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Local port forwarding: access remote DB on localhost:5433
+ssh -L 5433:localhost:5432 user@dbserver.example.com
+
+# Access a service behind a firewall
+ssh -L 8080:internal-service:80 user@jumpbox.example.com
+
+# Remote port forwarding: expose local port on remote server
+ssh -R 9090:localhost:3000 user@remote.example.com
+
+# Dynamic SOCKS proxy (browse through remote server)
+ssh -D 1080 user@remote.example.com
+
+# Run tunnel in background
+ssh -fN -L 5433:localhost:5432 user@dbserver.example.com</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Proxy jump (bastion / jump host)</h3>
+    <p>Connect to a server through an intermediate jump host without multiple SSH commands.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Jump through bastion to reach internal server
+ssh -J bastion.example.com user@internal-server
+
+# SSH config equivalent
+Host internal
+    HostName 10.0.1.50
+    User deploy
+    ProxyJump bastion.example.com
+
+# Multiple jumps
+ssh -J jump1.example.com,jump2.example.com user@target</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 7. JQ RECIPES -->
+<!-- ============================================================ -->
+<section class="recipe" id="jq">
+  <div class="recipe-header">
+    <span class="recipe-number">07</span>
+    <h2><a href="#jq">jq Recipes</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Pretty print and extract fields</h3>
+    <p>Format JSON output and extract specific fields from API responses.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Pretty print JSON
+cat data.json | jq '.'
+
+# Extract a single field
+echo '{"name":"Alice","age":30}' | jq '.name'
+# Output: "Alice"
+
+# Extract without quotes
+echo '{"name":"Alice","age":30}' | jq -r '.name'
+# Output: Alice
+
+# Extract nested field
+cat data.json | jq '.user.address.city'
+
+# Extract multiple fields
+cat data.json | jq '{name: .name, email: .email}'</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Filter arrays</h3>
+    <p>Select elements from JSON arrays using conditions.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Get all names from an array of objects
+cat users.json | jq '.[].name'
+
+# Filter array by condition
+cat users.json | jq '[.[] | select(.age > 25)]'
+
+# Filter by string match
+cat users.json | jq '[.[] | select(.role == "admin")]'
+
+# Get first / last element
+cat users.json | jq 'first'
+cat users.json | jq 'last'
+
+# Get array length
+cat users.json | jq 'length'</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Transform JSON</h3>
+    <p>Reshape JSON data into new structures.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Map array to new shape
+cat users.json | jq '[.[] | {display: .name, mail: .email}]'
+
+# Add a new field
+cat data.json | jq '. + {"timestamp": now}'
+
+# Convert array to CSV
+cat users.json | jq -r '.[] | [.name, .email, .age] | @csv'
+
+# Group by a field
+cat data.json | jq 'group_by(.category) | map({key: .[0].category, count: length})'
+
+# Sort by field
+cat users.json | jq 'sort_by(.age) | reverse'</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Merge and combine files</h3>
+    <p>Merge multiple JSON files or combine objects.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Merge two JSON objects (second wins on conflicts)
+jq -s '.[0] * .[1]' defaults.json overrides.json
+
+# Concatenate two arrays
+jq -s '.[0] + .[1]' list1.json list2.json
+
+# Merge from stdin and file
+echo '{"extra":"value"}' | jq -s '.[0] * .[1]' config.json -
+
+# Process JSONL (one JSON per line)
+cat events.jsonl | jq -c 'select(.level == "error")'</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 8. AWK ONE-LINERS -->
+<!-- ============================================================ -->
+<section class="recipe" id="awk">
+  <div class="recipe-header">
+    <span class="recipe-number">08</span>
+    <h2><a href="#awk">awk One-Liners</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Sum a column of numbers</h3>
+    <p>Add up all values in a specific column. Default field separator is whitespace.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Sum the second column
+awk '{sum += $2} END {print sum}' data.txt
+
+# Sum with formatted output
+awk '{sum += $2} END {printf "Total: %.2f\n", sum}' data.txt
+
+# Sum a CSV column (column 3)
+awk -F',' '{sum += $3} END {print sum}' data.csv</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Filter lines by pattern or condition</h3>
+    <p>Print only lines that match a condition.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Lines where column 3 > 100
+awk '$3 > 100' data.txt
+
+# Lines matching a regex pattern
+awk '/error|warning/' logfile.txt
+
+# Lines where a field equals a value
+awk -F',' '$2 == "active"' users.csv
+
+# Lines between two patterns (inclusive)
+awk '/START/,/END/' logfile.txt
+
+# Print lines longer than 80 characters
+awk 'length > 80' file.txt</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Field extraction and reformatting</h3>
+    <p>Extract and reformat specific fields from structured text.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Print specific columns (1st and 3rd)
+awk '{print $1, $3}' data.txt
+
+# Rearrange columns with custom separator
+awk -F',' '{print $3 "\t" $1}' data.csv
+
+# Print last field on each line
+awk '{print $NF}' data.txt
+
+# Print line number and content
+awk '{print NR ": " $0}' file.txt
+
+# Add header and format as table
+awk 'BEGIN {printf "%-15s %-10s\n", "Name", "Score"; print "-------------------------"} {printf "%-15s %-10s\n", $1, $2}' data.txt</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>CSV processing</h3>
+    <p>Process CSV files, handle specific columns, and generate reports.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Skip header row and print columns
+awk -F',' 'NR > 1 {print $1, $3}' data.csv
+
+# Count rows by category (column 2)
+awk -F',' 'NR > 1 {count[$2]++} END {for (k in count) print k, count[k]}' data.csv
+
+# Average of a column
+awk -F',' 'NR > 1 {sum += $3; n++} END {print "Average:", sum/n}' data.csv
+
+# Convert CSV to TSV
+awk -F',' '{$1=$1; print}' OFS='\t' data.csv</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Deduplication</h3>
+    <p>Remove duplicate lines while preserving order, or count occurrences.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Remove duplicate lines (preserves order)
+awk '!seen[$0]++' file.txt
+
+# Remove duplicates based on a specific field
+awk -F',' '!seen[$1]++' data.csv
+
+# Count occurrences of each unique line
+awk '{count[$0]++} END {for (line in count) print count[line], line}' file.txt | sort -rn
+
+# Show only duplicated lines
+awk 'seen[$0]++' file.txt</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 9. SYSTEMD CHEATSHEET -->
+<!-- ============================================================ -->
+<section class="recipe" id="systemd">
+  <div class="recipe-header">
+    <span class="recipe-number">09</span>
+    <h2><a href="#systemd">systemd Cheatsheet</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Create a systemd service</h3>
+    <p>Create a service unit file at <code>/etc/systemd/system/myapp.service</code> to run your application as a daemon.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code>[Unit]
+Description=My Application
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=appuser
+Group=appgroup
+WorkingDirectory=/opt/myapp
+ExecStart=/opt/myapp/bin/server --config /etc/myapp/config.yml
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+Environment=NODE_ENV=production
+EnvironmentFile=-/etc/myapp/env
+
+# Security hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/myapp
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Enable, start, and manage services</h3>
+    <p>Essential systemctl commands for managing services.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Reload unit files after creating/editing
+sudo systemctl daemon-reload
+
+# Enable service to start on boot
+sudo systemctl enable myapp
+
+# Start the service now
+sudo systemctl start myapp
+
+# Enable and start in one command
+sudo systemctl enable --now myapp
+
+# Stop the service
+sudo systemctl stop myapp
+
+# Restart the service
+sudo systemctl restart myapp
+
+# Reload config without full restart (if supported)
+sudo systemctl reload myapp
+
+# Check service status
+systemctl status myapp
+
+# Disable service from starting on boot
+sudo systemctl disable myapp
+
+# List all running services
+systemctl list-units --type=service --state=running</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>journalctl (viewing logs)</h3>
+    <p>Query and filter systemd logs with journalctl.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># View logs for a specific service
+journalctl -u myapp
+
+# Follow logs in real time
+journalctl -u myapp -f
+
+# Logs since last boot
+journalctl -u myapp -b
+
+# Logs from the last hour
+journalctl -u myapp --since "1 hour ago"
+
+# Logs between dates
+journalctl -u myapp --since "2024-01-01" --until "2024-01-02"
+
+# Only errors and above
+journalctl -u myapp -p err
+
+# Output as JSON
+journalctl -u myapp -o json-pretty
+
+# Disk usage of journal
+journalctl --disk-usage
+
+# Clean old logs (keep last 500MB)
+sudo journalctl --vacuum-size=500M</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Timer units (cron replacement)</h3>
+    <p>Create a systemd timer as a modern replacement for cron. You need both a <code>.timer</code> and a <code>.service</code> file.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># /etc/systemd/system/backup.timer
+[Unit]
+Description=Run backup every day at 2 AM
+
+[Timer]
+OnCalendar=*-*-* 02:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target</code></pre>
+    </div>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># /etc/systemd/system/backup.service
+[Unit]
+Description=Backup job
+
+[Service]
+Type=oneshot
+ExecStart=/opt/scripts/backup.sh
+User=backup</code></pre>
+    </div>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Enable and start the timer
+sudo systemctl enable --now backup.timer
+
+# List all active timers
+systemctl list-timers --all
+
+# Test the service manually
+sudo systemctl start backup.service</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 10. NGINX CONFIG RECIPES -->
+<!-- ============================================================ -->
+<section class="recipe" id="nginx">
+  <div class="recipe-header">
+    <span class="recipe-number">10</span>
+    <h2><a href="#nginx">nginx Config Recipes</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Reverse proxy</h3>
+    <p>Proxy requests to a backend application running on a different port. Passes real client IP and protocol headers.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code>server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>SSL / TLS with Let's Encrypt</h3>
+    <p>HTTPS configuration with strong security settings. Obtain certificates with certbot first.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Redirect HTTP to HTTPS
+server {
+    listen 80;
+    server_name example.com;
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name example.com;
+
+    ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
+
+    # Strong SSL settings
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384;
+    ssl_prefer_server_ciphers off;
+
+    # HSTS
+    add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" always;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Rate limiting</h3>
+    <p>Protect your server from abuse by limiting request rates per client IP.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code># Define rate limit zone in http block
+http {
+    limit_req_zone $binary_remote_addr zone=api:10m rate=10r/s;
+    limit_req_zone $binary_remote_addr zone=login:10m rate=1r/s;
+
+    server {
+        listen 80;
+        server_name example.com;
+
+        # API: 10 req/s with burst of 20
+        location /api/ {
+            limit_req zone=api burst=20 nodelay;
+            limit_req_status 429;
+            proxy_pass http://127.0.0.1:3000;
+        }
+
+        # Login: 1 req/s with burst of 5
+        location /login {
+            limit_req zone=login burst=5;
+            limit_req_status 429;
+            proxy_pass http://127.0.0.1:3000;
+        }
+    }
+}</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Serve static files</h3>
+    <p>Serve static files efficiently with caching headers, gzip compression, and a fallback for SPAs.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code>server {
+    listen 80;
+    server_name example.com;
+    root /var/www/mysite;
+    index index.html;
+
+    # Enable gzip
+    gzip on;
+    gzip_types text/plain text/css application/json application/javascript text/xml image/svg+xml;
+    gzip_min_length 256;
+
+    # Cache static assets
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff2?)$ {
+        expires 30d;
+        add_header Cache-Control "public, immutable";
+        access_log off;
+    }
+
+    # SPA fallback: serve index.html for all routes
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Deny access to hidden files
+    location ~ /\. {
+        deny all;
+        access_log off;
+        log_not_found off;
+    }
+}</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Redirects</h3>
+    <p>Common redirect patterns for domain migration, URL restructuring, and maintenance pages.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code>server {
+    listen 80;
+    server_name example.com;
+
+    # Redirect single path
+    location = /old-page {
+        return 301 /new-page;
+    }
+
+    # Redirect with regex (preserve path)
+    location ~ ^/blog/(.*)$ {
+        return 301 /articles/$1;
+    }
+
+    # Redirect www to non-www
+    server_name www.example.com;
+    return 301 https://example.com$request_uri;
+}
+
+# Redirect entire old domain
+server {
+    listen 80;
+    server_name olddomain.com;
+    return 301 https://newdomain.com$request_uri;
+}
+
+# Maintenance mode
+server {
+    listen 80;
+    server_name example.com;
+
+    # Return 503 with a custom page
+    error_page 503 /maintenance.html;
+    location = /maintenance.html {
+        root /var/www/errors;
+        internal;
+    }
+    location / {
+        return 503;
+    }
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>Built by <a href="https://agents-skills.com" target="_blank" rel="noopener noreferrer">agents-skills.com</a></p>
+</footer>
+
+<!-- ===== BACK TO TOP ===== -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// === Copy to clipboard ===
+document.addEventListener('click', function(e) {
+  if (!e.target.classList.contains('copy-btn')) return;
+
+  var btn = e.target;
+  var codeBlock = btn.parentElement.querySelector('pre code') || btn.parentElement.querySelector('pre');
+  var text = codeBlock.textContent;
+
+  navigator.clipboard.writeText(text).then(function() {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(function() {
+    // Fallback for older browsers
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 2000);
+    } catch(err) {
+      btn.textContent = 'Error';
+      setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+    }
+    document.body.removeChild(ta);
+  });
+});
+
+// === Active nav link on scroll ===
+(function() {
+  var sections = document.querySelectorAll('.recipe');
+  var navLinks = document.querySelectorAll('.nav-links a');
+  var ticking = false;
+
+  function updateActiveNav() {
+    var scrollPos = window.scrollY + 100;
+
+    sections.forEach(function(section) {
+      var top = section.offsetTop;
+      var bottom = top + section.offsetHeight;
+      var id = section.getAttribute('id');
+
+      if (scrollPos >= top && scrollPos < bottom) {
+        navLinks.forEach(function(link) {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+            // Scroll nav link into view
+            link.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          }
+        });
+      }
+    });
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(updateActiveNav);
+      ticking = true;
+    }
+  });
+})();
+
+// === Back to top button ===
+(function() {
+  var btn = document.getElementById('backToTop');
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 400) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  });
+
+  btn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
+
+</body>
+</html>
