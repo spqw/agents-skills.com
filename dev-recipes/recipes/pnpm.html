@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pnpm Cheatsheet — Copy-Paste pnpm Recipes for Developers</title>
+<meta name="description" content="Copy-paste pnpm recipes. Install packages, manage workspaces, run scripts, patch dependencies, and more. Bookmark-worthy pnpm reference.">
+<meta name="keywords" content="pnpm cheatsheet, pnpm commands, pnpm workspace, pnpm monorepo, pnpm install, pnpm add, pnpm filter, pnpm recipes">
+<meta name="author" content="dev.recipes">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pnpm.dev.recipes/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pnpm.dev.recipes/">
+<meta property="og:title" content="pnpm Cheatsheet — Copy-Paste pnpm Recipes">
+<meta property="og:description" content="Copy-paste pnpm recipes. Install, workspaces, scripts, patching, store management, CI, and more.">
+<meta property="og:site_name" content="dev.recipes">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="pnpm Cheatsheet — Copy-Paste pnpm Recipes">
+<meta name="twitter:description" content="Copy-paste pnpm recipes. Install, workspaces, scripts, patching, store management, CI, and more.">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "pnpm Cheatsheet — Copy-Paste pnpm Recipes",
+  "description": "Copy-paste pnpm recipes for developers. Install packages, manage workspaces, run scripts, patch dependencies, and more.",
+  "url": "https://pnpm.dev.recipes/",
+  "inLanguage": "en",
+  "publisher": {
+    "@type": "Organization",
+    "name": "dev.recipes",
+    "url": "https://dev.recipes/"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "pnpm Recipes",
+    "numberOfItems": 8,
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Install & Add Packages"},
+      {"@type": "ListItem", "position": 2, "name": "Remove & Update"},
+      {"@type": "ListItem", "position": 3, "name": "Run Scripts & Binaries"},
+      {"@type": "ListItem", "position": 4, "name": "Workspaces (Monorepo)"},
+      {"@type": "ListItem", "position": 5, "name": "Inspect & Audit"},
+      {"@type": "ListItem", "position": 6, "name": "Store Management"},
+      {"@type": "ListItem", "position": 7, "name": "Patching & Overrides"},
+      {"@type": "ListItem", "position": 8, "name": "CI & Configuration"}
+    ]
+  }
+}
+</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0b0b11; color: #f0f0f5; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #0b0b11; }
+::-webkit-scrollbar-thumb { background: #2a2a3a; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #3a3a4a; }
+
+/* ===== STICKY NAV ===== */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(11, 11, 17, 0.92); backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(246, 133, 31, 0.15);
+}
+.nav-inner {
+  max-width: 900px; margin: 0 auto; padding: 0 20px;
+  display: flex; align-items: center; gap: 0; height: 56px;
+}
+.nav-logo {
+  font-weight: 800; font-size: 1.05rem; color: #f6851f;
+  text-decoration: none; white-space: nowrap; flex-shrink: 0;
+  margin-right: 20px; letter-spacing: -0.02em;
+}
+.nav-links {
+  display: flex; gap: 4px; overflow-x: auto;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none; flex: 1; padding: 4px 0;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-links a {
+  color: #8888a0; text-decoration: none; font-size: 0.78rem; font-weight: 500;
+  padding: 6px 10px; border-radius: 6px; white-space: nowrap;
+  transition: color 0.2s, background 0.2s;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: #f0f0f5; background: rgba(246, 133, 31, 0.1);
+}
+
+/* ===== HERO ===== */
+.hero {
+  max-width: 900px; margin: 0 auto; padding: 60px 20px 40px; text-align: center;
+}
+.hero h1 {
+  font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 800;
+  letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 12px;
+}
+.hero h1 span { color: #f6851f; }
+.hero p { color: #8888a0; font-size: 1.05rem; max-width: 540px; margin: 0 auto; }
+
+/* ===== MAIN CONTENT ===== */
+.content { max-width: 900px; margin: 0 auto; padding: 0 20px 80px; }
+
+/* ===== RECIPE SECTION ===== */
+.recipe { margin-bottom: 64px; }
+.recipe-header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 24px;
+  padding-bottom: 12px; border-bottom: 1px solid #1a1a2a;
+}
+.recipe-header h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+.recipe-header h2 a { color: #f0f0f5; text-decoration: none; transition: color 0.2s; }
+.recipe-header h2 a:hover { color: #f6851f; }
+.recipe-number {
+  background: rgba(246, 133, 31, 0.12); color: #f6851f; font-size: 0.75rem;
+  font-weight: 700; padding: 3px 9px; border-radius: 20px; flex-shrink: 0;
+}
+.recipe-item { margin-bottom: 24px; }
+.recipe-item h3 { font-size: 0.95rem; font-weight: 600; color: #c0c0d0; margin-bottom: 8px; }
+.recipe-item p { font-size: 0.85rem; color: #7777a0; margin-bottom: 8px; line-height: 1.5; }
+
+/* ===== CODE BLOCKS ===== */
+.code-wrap { position: relative; margin-bottom: 4px; }
+.code-wrap pre {
+  background: #12121c; border: 1px solid #1e1e30; border-radius: 8px;
+  padding: 16px 52px 16px 16px; overflow-x: auto;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.82rem; line-height: 1.65; color: #d0d0e0; tab-size: 2;
+}
+.code-wrap pre code { font-family: inherit; font-size: inherit; }
+.copy-btn {
+  position: absolute; top: 8px; right: 8px;
+  background: rgba(246, 133, 31, 0.1); border: 1px solid rgba(246, 133, 31, 0.2);
+  color: #f6851f; font-size: 0.7rem; font-weight: 600; font-family: 'Inter', sans-serif;
+  padding: 5px 10px; border-radius: 5px; cursor: pointer; transition: all 0.2s; z-index: 2;
+}
+.copy-btn:hover { background: rgba(246, 133, 31, 0.2); border-color: rgba(246, 133, 31, 0.4); }
+.copy-btn.copied { background: rgba(80, 200, 120, 0.15); border-color: rgba(80, 200, 120, 0.3); color: #50c878; }
+
+/* ===== SYNTAX HIGHLIGHTING ===== */
+.kw { color: #c792ea; }
+.str { color: #c3e88d; }
+.cm { color: #546e7a; }
+.flag { color: #82aaff; }
+.var { color: #f78c6c; }
+.url { color: #89ddff; }
+
+/* ===== FOOTER ===== */
+.footer { max-width: 900px; margin: 0 auto; padding: 32px 20px; border-top: 1px solid #1a1a2a; text-align: center; font-size: 0.85rem; }
+.footer a { color: #f6851f; text-decoration: none; font-weight: 600; transition: opacity 0.2s; }
+.footer a:hover { opacity: 0.8; }
+.footer p { color: #555577; }
+
+/* ===== BACK TO TOP ===== */
+.back-to-top {
+  position: fixed; bottom: 24px; right: 24px; width: 42px; height: 42px;
+  background: rgba(246, 133, 31, 0.15); border: 1px solid rgba(246, 133, 31, 0.25);
+  border-radius: 10px; color: #f6851f; font-size: 1.2rem;
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 50;
+}
+.back-to-top.visible { opacity: 1; visibility: visible; }
+.back-to-top:hover { background: rgba(246, 133, 31, 0.25); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .nav-inner { height: 48px; }
+  .nav-logo { font-size: 0.95rem; margin-right: 12px; }
+  .nav-links a { font-size: 0.72rem; padding: 5px 8px; }
+  .hero { padding: 40px 16px 28px; }
+  .hero p { font-size: 0.95rem; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="https://dev.recipes/" class="nav-logo">dev.recipes</a>
+    <div class="nav-links">
+      <a href="#install">Install</a>
+      <a href="#remove-update">Update</a>
+      <a href="#scripts">Scripts</a>
+      <a href="#workspaces">Workspaces</a>
+      <a href="#inspect">Inspect</a>
+      <a href="#store">Store</a>
+      <a href="#patching">Patching</a>
+      <a href="#ci">CI &amp; Config</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <h1><span>pnpm</span> Recipes</h1>
+  <p>Copy-paste pnpm commands for every situation. Click any code block to copy.</p>
+</header>
+
+<!-- ===== CONTENT ===== -->
+<main class="content">
+
+<!-- ============================================================ -->
+<!-- 01. Install & Add -->
+<!-- ============================================================ -->
+<section class="recipe" id="install">
+  <div class="recipe-header">
+    <span class="recipe-number">01</span>
+    <h2><a href="#install">Install &amp; Add Packages</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Install pnpm itself</h3>
+    <p>Three ways to get pnpm on your system.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cm"># Option 1: Corepack (recommended, ships with Node 16.13+)</span>
+corepack enable pnpm
+
+<span class="cm"># Option 2: Via npm</span>
+npm install <span class="flag">-g</span> pnpm
+
+<span class="cm"># Option 3: Standalone script</span>
+curl <span class="flag">-fsSL</span> https://get.pnpm.io/install.sh | sh -
+
+<span class="cm"># Pin version in your project</span>
+corepack use pnpm@latest</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Add dependencies</h3>
+    <p>Production, dev, optional, exact, and peer dependencies.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cm"># Install all deps from package.json</span>
+pnpm install
+
+<span class="cm"># Production dependency</span>
+pnpm add react react-dom
+
+<span class="cm"># Dev dependency</span>
+pnpm add <span class="flag">-D</span> typescript @types/react vitest
+
+<span class="cm"># Exact version (no ^ or ~)</span>
+pnpm add <span class="flag">-E</span> lodash@4.17.21
+
+<span class="cm"># Optional dependency</span>
+pnpm add <span class="flag">-O</span> fsevents
+
+<span class="cm"># Peer dependency</span>
+pnpm add <span class="flag">--save-peer</span> react
+
+<span class="cm"># From a git repo</span>
+pnpm add github:user/repo
+
+<span class="cm"># From a local path</span>
+pnpm add <span class="flag">./packages/shared</span></code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 02. Remove & Update -->
+<!-- ============================================================ -->
+<section class="recipe" id="remove-update">
+  <div class="recipe-header">
+    <span class="recipe-number">02</span>
+    <h2><a href="#remove-update">Remove &amp; Update</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Remove packages</h3>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cm"># Remove a package</span>
+pnpm remove lodash
+
+<span class="cm"># Remove a dev dependency</span>
+pnpm remove <span class="flag">-D</span> @types/lodash
+
+<span class="cm"># Remove a global package</span>
+pnpm remove <span class="flag">-g</span> serve</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Update packages</h3>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cm"># Update all (respecting semver ranges in package.json)</span>
+pnpm update
+
+<span class="cm"># Update a specific package</span>
+pnpm update react
+
+<span class="cm"># Update to absolute latest (ignoring ranges)</span>
+pnpm update <span class="flag">--latest</span>
+
+<span class="cm"># Interactive update (pick which packages to update)</span>
+pnpm update <span class="flag">--interactive</span>
+
+<span class="cm"># Check what's outdated without changing anything</span>
+pnpm outdated</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 03. Scripts & Binaries -->
+<!-- ============================================================ -->
+<section class="recipe" id="scripts">
+  <div class="recipe-header">
+    <span class="recipe-number">03</span>
+    <h2><a href="#scripts">Run Scripts &amp; Binaries</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Run package.json scripts</h3>
+    <p>Unlike npm, pnpm doesn't need <code>run</code> for custom scripts.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cm"># Run a script (no "run" keyword needed)</span>
+pnpm build
+pnpm test
+pnpm dev
+pnpm lint
+
+<span class="cm"># Explicit "run" also works</span>
+pnpm run build
+
+<span class="cm"># Pass arguments to a script</span>
+pnpm test <span class="flag">-- --watch --coverage</span>
+
+<span class="cm"># Run pre/post scripts</span>
+pnpm run prebuild</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Execute binaries</h3>
+    <p><code>dlx</code> = download + execute (like npx). <code>exec</code> = run already-installed binary.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cm"># Download and execute (like npx)</span>
+pnpm dlx create-next-app my-app
+pnpm dlx degit user/repo my-project
+pnpm dlx serve <span class="flag">-p 3000</span>
+
+<span class="cm"># Run a binary already in node_modules/.bin</span>
+pnpm exec tsc <span class="flag">--noEmit</span>
+pnpm exec vitest run
+pnpm exec eslint .</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 04. Workspaces -->
+<!-- ============================================================ -->
+<section class="recipe" id="workspaces">
+  <div class="recipe-header">
+    <span class="recipe-number">04</span>
+    <h2><a href="#workspaces">Workspaces (Monorepo)</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Set up a workspace</h3>
+    <p>Create <code>pnpm-workspace.yaml</code> at the repo root.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cm"># pnpm-workspace.yaml</span>
+packages:
+  - <span class="str">'apps/*'</span>
+  - <span class="str">'packages/*'</span>
+  - <span class="str">'tools/*'</span></code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Filter commands to specific packages</h3>
+    <p>The <code>--filter</code> flag is pnpm's killer feature for monorepos.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cm"># Run in a specific package</span>
+pnpm <span class="flag">--filter</span> @myorg/web dev
+pnpm <span class="flag">--filter</span> @myorg/api build
+
+<span class="cm"># Add a dependency to a specific package</span>
+pnpm add react <span class="flag">--filter</span> @myorg/web
+
+<span class="cm"># Run in all packages matching a directory pattern</span>
+pnpm <span class="flag">--filter</span> <span class="str">"./packages/**"</span> test
+
+<span class="cm"># Run in all packages that changed since last commit</span>
+pnpm <span class="flag">--filter</span> <span class="str">"...[HEAD~1]"</span> build
+
+<span class="cm"># Run in a package and all its dependencies</span>
+pnpm <span class="flag">--filter</span> @myorg/web<span class="str">...</span> build
+
+<span class="cm"># Run in all packages recursively</span>
+pnpm <span class="flag">-r</span> build
+pnpm <span class="flag">-r</span> test</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Link workspace packages</h3>
+    <p>Use <code>workspace:*</code> to depend on local packages instead of registry versions.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cm"># Add a local workspace package as a dependency</span>
+pnpm add @myorg/utils@<span class="str">workspace:*</span> <span class="flag">--filter</span> @myorg/web
+
+<span class="cm"># In package.json, it looks like:</span>
+<span class="cm"># "dependencies": { "@myorg/utils": "workspace:*" }</span>
+
+<span class="cm"># Add a dependency to the workspace root</span>
+pnpm add <span class="flag">-w</span> typescript
+pnpm add <span class="flag">-wD</span> prettier eslint</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 05. Inspect & Audit -->
+<!-- ============================================================ -->
+<section class="recipe" id="inspect">
+  <div class="recipe-header">
+    <span class="recipe-number">05</span>
+    <h2><a href="#inspect">Inspect &amp; Audit</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Understand your dependency tree</h3>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cm"># List all installed packages</span>
+pnpm list
+
+<span class="cm"># List only direct dependencies (no transitive)</span>
+pnpm list <span class="flag">--depth 0</span>
+
+<span class="cm"># Why is a specific package installed?</span>
+pnpm why react-dom
+pnpm why lodash
+
+<span class="cm"># Security audit</span>
+pnpm audit
+
+<span class="cm"># Fix known vulnerabilities</span>
+pnpm audit <span class="flag">--fix</span>
+
+<span class="cm"># List licenses of all dependencies</span>
+pnpm licenses list</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 06. Store Management -->
+<!-- ============================================================ -->
+<section class="recipe" id="store">
+  <div class="recipe-header">
+    <span class="recipe-number">06</span>
+    <h2><a href="#store">Store Management</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Manage the global content-addressable store</h3>
+    <p>pnpm stores every package version once globally and hard-links into projects.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cm"># Show where the global store lives</span>
+pnpm store path
+<span class="cm"># → ~/.local/share/pnpm/store/v3</span>
+
+<span class="cm"># Clean unreferenced packages from the store</span>
+pnpm store prune
+
+<span class="cm"># Verify store integrity</span>
+pnpm store status
+
+<span class="cm"># Install a global package</span>
+pnpm add <span class="flag">-g</span> typescript tsx serve
+
+<span class="cm"># List global packages</span>
+pnpm list <span class="flag">-g</span>
+
+<span class="cm"># Manage Node.js versions via pnpm</span>
+pnpm env use <span class="flag">--global</span> 22
+pnpm env list
+pnpm env remove <span class="flag">--global</span> 20</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 07. Patching & Overrides -->
+<!-- ============================================================ -->
+<section class="recipe" id="patching">
+  <div class="recipe-header">
+    <span class="recipe-number">07</span>
+    <h2><a href="#patching">Patching &amp; Overrides</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Patch a dependency</h3>
+    <p>Fix a bug in a dependency without forking. Creates a patch file tracked in git.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cm"># Start patching (opens an editable copy)</span>
+pnpm patch express
+
+<span class="cm"># Make your changes, then commit the patch</span>
+pnpm patch-commit ./path-to-modified-package
+
+<span class="cm"># Patches are stored in your project and auto-applied on install</span>
+<span class="cm"># package.json → "pnpm": { "patchedDependencies": { "express@4.18.2": "patches/express.patch" } }</span></code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Override transitive dependency versions</h3>
+    <p>Force all instances of a package to a specific version, even deep in the tree.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cm">// package.json</span>
+{
+  <span class="str">"pnpm"</span>: {
+    <span class="str">"overrides"</span>: {
+      <span class="cm">// Force all lodash to this version</span>
+      <span class="str">"lodash"</span>: <span class="str">"4.17.21"</span>,
+
+      <span class="cm">// Only override lodash when used by express</span>
+      <span class="str">"express>lodash"</span>: <span class="str">"4.17.21"</span>,
+
+      <span class="cm">// Use a local package instead of registry</span>
+      <span class="str">"some-pkg"</span>: <span class="str">"link:./local-fork"</span>
+    }
+  }
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 08. CI & Configuration -->
+<!-- ============================================================ -->
+<section class="recipe" id="ci">
+  <div class="recipe-header">
+    <span class="recipe-number">08</span>
+    <h2><a href="#ci">CI &amp; Configuration</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>CI install (frozen lockfile)</h3>
+    <p>Use <code>--frozen-lockfile</code> in CI to fail if the lockfile is out of date.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cm"># CI install — fails if lockfile doesn't match package.json</span>
+pnpm install <span class="flag">--frozen-lockfile</span>
+
+<span class="cm"># Import lockfile from npm or Yarn</span>
+pnpm import
+
+<span class="cm"># Generate lockfile without installing packages</span>
+pnpm install <span class="flag">--lockfile-only</span></code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>GitHub Actions setup</h3>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cm"># .github/workflows/ci.yml</span>
+steps:
+  - uses: actions/checkout@v4
+  - uses: pnpm/action-setup@v4
+  - uses: actions/setup-node@v4
+    with:
+      node-version: 22
+      cache: <span class="str">'pnpm'</span>
+  - run: pnpm install <span class="flag">--frozen-lockfile</span>
+  - run: pnpm build
+  - run: pnpm test</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>.npmrc configuration</h3>
+    <p>Project-level pnpm settings. Place in the repo root.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cm"># .npmrc</span>
+
+<span class="cm"># Auto-install peer dependencies (default in pnpm 8+)</span>
+auto-install-peers=<span class="str">true</span>
+
+<span class="cm"># Hoist specific packages that need flat node_modules</span>
+public-hoist-pattern[]=<span class="str">*eslint*</span>
+public-hoist-pattern[]=<span class="str">*prettier*</span>
+
+<span class="cm"># Shamefully hoist everything (migration escape hatch)</span>
+shamefully-hoist=<span class="str">true</span>
+
+<span class="cm"># Use a specific Node.js version</span>
+use-node-version=<span class="str">22.0.0</span>
+
+<span class="cm"># Strict peer dependencies (fail on mismatch)</span>
+strict-peer-dependencies=<span class="str">true</span></code></pre>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>Built by <a href="https://dev.recipes/" target="_blank" rel="noopener noreferrer">dev.recipes</a></p>
+</footer>
+
+<!-- ===== BACK TO TOP ===== -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// === Copy to clipboard ===
+document.addEventListener('click', function(e) {
+  if (!e.target.classList.contains('copy-btn')) return;
+  var btn = e.target;
+  var codeBlock = btn.parentElement.querySelector('pre code') || btn.parentElement.querySelector('pre');
+  var text = codeBlock.textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  }).catch(function() {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try {
+      document.execCommand('copy');
+      btn.textContent = 'Copied!'; btn.classList.add('copied');
+      setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    } catch(err) {
+      btn.textContent = 'Error';
+      setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+    }
+    document.body.removeChild(ta);
+  });
+});
+
+// === Active nav link on scroll ===
+(function() {
+  var sections = document.querySelectorAll('.recipe');
+  var navLinks = document.querySelectorAll('.nav-links a');
+  var ticking = false;
+  function updateActiveNav() {
+    var scrollPos = window.scrollY + 100;
+    sections.forEach(function(section) {
+      var top = section.offsetTop;
+      var bottom = top + section.offsetHeight;
+      var id = section.getAttribute('id');
+      if (scrollPos >= top && scrollPos < bottom) {
+        navLinks.forEach(function(link) {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+            link.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          }
+        });
+      }
+    });
+    ticking = false;
+  }
+  window.addEventListener('scroll', function() {
+    if (!ticking) { requestAnimationFrame(updateActiveNav); ticking = true; }
+  });
+})();
+
+// === Back to top button ===
+(function() {
+  var btn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 400) { btn.classList.add('visible'); }
+    else { btn.classList.remove('visible'); }
+  });
+  btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+})();
+</script>
+
+</body>
+</html>
