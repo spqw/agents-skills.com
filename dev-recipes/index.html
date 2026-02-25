@@ -40,7 +40,7 @@
   "mainEntity": {
     "@type": "ItemList",
     "name": "Developer Code Recipes",
-    "numberOfItems": 10,
+    "numberOfItems": 11,
     "itemListElement": [
       {"@type": "ListItem", "position": 1, "name": "curl Recipes"},
       {"@type": "ListItem", "position": 2, "name": "Docker Compose Cheatsheet"},
@@ -51,7 +51,8 @@
       {"@type": "ListItem", "position": 7, "name": "jq Recipes"},
       {"@type": "ListItem", "position": 8, "name": "awk One-Liners"},
       {"@type": "ListItem", "position": 9, "name": "systemd Cheatsheet"},
-      {"@type": "ListItem", "position": 10, "name": "nginx Config Recipes"}
+      {"@type": "ListItem", "position": 10, "name": "nginx Config Recipes"},
+      {"@type": "ListItem", "position": 11, "name": "pnpm Recipes"}
     ]
   }
 }
@@ -425,6 +426,7 @@ body {
       <a href="#awk">awk</a>
       <a href="#systemd">systemd</a>
       <a href="#nginx">nginx</a>
+      <a href="#pnpm">pnpm</a>
     </div>
   </div>
 </nav>
@@ -432,7 +434,7 @@ body {
 <!-- ===== HERO ===== -->
 <header class="hero">
   <h1><span>dev.recipes</span> — Copy-Paste Code Recipes for Developers</h1>
-  <p>10 curated cheatsheets. Click any code block to copy. Bookmark this page.</p>
+  <p>11 curated cheatsheets. Click any code block to copy. Bookmark this page.</p>
 </header>
 
 <!-- ===== CONTENT ===== -->
@@ -1567,6 +1569,138 @@ server {
         return 503;
     }
 }</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 11. pnpm -->
+<!-- ============================================================ -->
+<section class="recipe" id="pnpm">
+  <div class="recipe-header">
+    <span class="recipe-number">11</span>
+    <h2><a href="#pnpm">pnpm Recipes</a></h2>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Install &amp; add packages</h3>
+    <p>Core package management — install everything, add new deps, pin exact versions.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cmt"># Install all deps from package.json</span>
+pnpm install
+
+<span class="cmt"># Add production dependency</span>
+pnpm add react
+
+<span class="cmt"># Add dev dependency</span>
+pnpm add <span class="flag">-D</span> typescript @types/node
+
+<span class="cmt"># Add exact version (no ^ or ~)</span>
+pnpm add <span class="flag">-E</span> lodash@4.17.21
+
+<span class="cmt"># Remove a package</span>
+pnpm remove lodash</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Run scripts &amp; binaries</h3>
+    <p>Execute package.json scripts and one-off binaries.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cmt"># Run a script (no "run" needed)</span>
+pnpm build
+pnpm test
+pnpm dev
+
+<span class="cmt"># Pass arguments to a script</span>
+pnpm test <span class="flag">-- --watch</span>
+
+<span class="cmt"># Execute a package without installing (like npx)</span>
+pnpm dlx create-next-app my-app
+
+<span class="cmt"># Run a locally installed binary</span>
+pnpm exec tsc <span class="flag">--noEmit</span></code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Workspace (monorepo) commands</h3>
+    <p>Manage multi-package repos with built-in workspace support.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cmt"># pnpm-workspace.yaml (at repo root)</span>
+packages:
+  - 'apps/*'
+  - 'packages/*'
+
+<span class="cmt"># Add dep to a specific workspace package</span>
+pnpm add react <span class="flag">--filter</span> @myorg/web
+
+<span class="cmt"># Link a local workspace package</span>
+pnpm add @myorg/utils@workspace:* <span class="flag">--filter</span> @myorg/web
+
+<span class="cmt"># Run build in all packages</span>
+pnpm <span class="flag">-r</span> build
+
+<span class="cmt"># Run only in changed packages (since last commit)</span>
+pnpm <span class="flag">--filter</span> "...[HEAD~1]" build
+
+<span class="cmt"># Add a root-level dev dependency</span>
+pnpm add <span class="flag">-wD</span> prettier</code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Update, audit &amp; inspect</h3>
+    <p>Keep dependencies fresh and understand your dependency tree.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cmt"># Update all (respecting semver ranges)</span>
+pnpm update
+
+<span class="cmt"># Update to absolute latest (ignore ranges)</span>
+pnpm update <span class="flag">--latest</span>
+
+<span class="cmt"># Check for outdated packages</span>
+pnpm outdated
+
+<span class="cmt"># Why is this package installed?</span>
+pnpm why react-dom
+
+<span class="cmt"># Security audit</span>
+pnpm audit
+
+<span class="cmt"># List direct dependencies only</span>
+pnpm list <span class="flag">--depth 0</span></code></pre>
+    </div>
+  </div>
+
+  <div class="recipe-item">
+    <h3>Store management &amp; CI</h3>
+    <p>Manage the global content-addressable store and lock installs for CI.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" aria-label="Copy to clipboard">Copy</button>
+      <pre><code><span class="cmt"># CI install (fails if lockfile is out of date)</span>
+pnpm install <span class="flag">--frozen-lockfile</span>
+
+<span class="cmt"># Import lockfile from npm/yarn</span>
+pnpm import
+
+<span class="cmt"># View store path</span>
+pnpm store path
+
+<span class="cmt"># Clean unused packages from store</span>
+pnpm store prune
+
+<span class="cmt"># Patch a dependency (opens editable copy)</span>
+pnpm patch express
+<span class="cmt"># After editing:</span>
+pnpm patch-commit ./path-to-modified-package
+
+<span class="cmt"># Override a transitive dependency version (package.json)</span>
+<span class="cmt"># "pnpm": { "overrides": { "lodash": "4.17.21" } }</span></code></pre>
     </div>
   </div>
 </section>
