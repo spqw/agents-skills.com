@@ -1,0 +1,251 @@
+{
+  "criteria": ["usefulness", "implementation_clarity", "automation_depth", "safety_readiness", "integration_potential"],
+  "judgedAt": "2026-03-06T13:29:58Z",
+  "skills": [
+    {
+      "slug": "aspnet-core",
+      "scores": {"usefulness": 8, "implementation_clarity": 8, "automation_depth": 6, "safety_readiness": 6, "integration_potential": 7},
+      "overall": 7.0,
+      "label": "Foundation",
+      "reason": "Broad ASP.NET coverage and clear scope; automation and guardrails are moderate."
+    },
+    {
+      "slug": "chatgpt-apps",
+      "scores": {"usefulness": 8, "implementation_clarity": 8, "automation_depth": 7, "safety_readiness": 7, "integration_potential": 9},
+      "overall": 7.8,
+      "label": "Foundation",
+      "reason": "Strong SDK workflow and integrations; docs-first guidance improves reliability."
+    },
+    {
+      "slug": "cloudflare-deploy",
+      "scores": {"usefulness": 7, "implementation_clarity": 8, "automation_depth": 7, "safety_readiness": 6, "integration_potential": 8},
+      "overall": 7.2,
+      "label": "Deployment",
+      "reason": "Focused deployment utility with clear triggers and good platform fit."
+    },
+    {
+      "slug": "develop-web-game",
+      "scores": {"usefulness": 6, "implementation_clarity": 7, "automation_depth": 8, "safety_readiness": 5, "integration_potential": 6},
+      "overall": 6.4,
+      "label": "Creative",
+      "reason": "Useful iterative game loop automation, but narrow domain and limited safety cues."
+    },
+    {
+      "slug": "doc",
+      "scores": {"usefulness": 7, "implementation_clarity": 8, "automation_depth": 6, "safety_readiness": 7, "integration_potential": 6},
+      "overall": 6.8,
+      "label": "Productivity",
+      "reason": "Practical document workflow with fidelity checks; moderate automation depth."
+    },
+    {
+      "slug": "figma",
+      "scores": {"usefulness": 7, "implementation_clarity": 7, "automation_depth": 7, "safety_readiness": 6, "integration_potential": 8},
+      "overall": 7.0,
+      "label": "Creative",
+      "reason": "Good design-to-code bridge with strong external integration potential."
+    },
+    {
+      "slug": "figma-implement-design",
+      "scores": {"usefulness": 7, "implementation_clarity": 8, "automation_depth": 7, "safety_readiness": 6, "integration_potential": 8},
+      "overall": 7.2,
+      "label": "Creative",
+      "reason": "Clear fidelity-focused implementation path; integration relies on MCP availability."
+    },
+    {
+      "slug": "gh-address-comments",
+      "scores": {"usefulness": 7, "implementation_clarity": 8, "automation_depth": 6, "safety_readiness": 7, "integration_potential": 8},
+      "overall": 7.2,
+      "label": "Productivity",
+      "reason": "Useful PR comment workflow with explicit auth checks and constraints."
+    },
+    {
+      "slug": "gh-fix-ci",
+      "scores": {"usefulness": 8, "implementation_clarity": 8, "automation_depth": 7, "safety_readiness": 8, "integration_potential": 8},
+      "overall": 7.8,
+      "label": "Reliability",
+      "reason": "High-value CI triage flow with clear approval and scope boundaries."
+    },
+    {
+      "slug": "imagegen",
+      "scores": {"usefulness": 7, "implementation_clarity": 8, "automation_depth": 7, "safety_readiness": 6, "integration_potential": 7},
+      "overall": 7.0,
+      "label": "Creative",
+      "reason": "Well-scoped media generation capabilities; safety posture depends on API usage."
+    },
+    {
+      "slug": "jupyter-notebook",
+      "scores": {"usefulness": 7, "implementation_clarity": 8, "automation_depth": 6, "safety_readiness": 7, "integration_potential": 6},
+      "overall": 6.8,
+      "label": "Foundation",
+      "reason": "Solid notebook scaffolding utility with clear use cases and moderate depth."
+    },
+    {
+      "slug": "linear",
+      "scores": {"usefulness": 6, "implementation_clarity": 7, "automation_depth": 6, "safety_readiness": 6, "integration_potential": 8},
+      "overall": 6.6,
+      "label": "Productivity",
+      "reason": "Helpful ticket operations, but description is brief and depth uncertain."
+    },
+    {
+      "slug": "netlify-deploy",
+      "scores": {"usefulness": 7, "implementation_clarity": 8, "automation_depth": 7, "safety_readiness": 6, "integration_potential": 8},
+      "overall": 7.2,
+      "label": "Deployment",
+      "reason": "Clear Netlify deployment flow with practical preview and production scope."
+    },
+    {
+      "slug": "notion-knowledge-capture",
+      "scores": {"usefulness": 6, "implementation_clarity": 7, "automation_depth": 6, "safety_readiness": 6, "integration_potential": 7},
+      "overall": 6.4,
+      "label": "Productivity",
+      "reason": "Useful documentation capture pattern, though automation specifics are limited."
+    },
+    {
+      "slug": "notion-meeting-intelligence",
+      "scores": {"usefulness": 6, "implementation_clarity": 7, "automation_depth": 5, "safety_readiness": 6, "integration_potential": 7},
+      "overall": 6.2,
+      "label": "Productivity",
+      "reason": "Good meeting prep utility, but workflow mechanics are lightly specified."
+    },
+    {
+      "slug": "notion-research-documentation",
+      "scores": {"usefulness": 7, "implementation_clarity": 7, "automation_depth": 6, "safety_readiness": 6, "integration_potential": 7},
+      "overall": 6.6,
+      "label": "Productivity",
+      "reason": "Valuable synthesis task support with moderate clarity and depth."
+    },
+    {
+      "slug": "notion-spec-to-implementation",
+      "scores": {"usefulness": 8, "implementation_clarity": 8, "automation_depth": 6, "safety_readiness": 6, "integration_potential": 8},
+      "overall": 7.2,
+      "label": "Productivity",
+      "reason": "Strong planning bridge from specs to execution with clear intent."
+    },
+    {
+      "slug": "openai-docs",
+      "scores": {"usefulness": 9, "implementation_clarity": 9, "automation_depth": 6, "safety_readiness": 9, "integration_potential": 8},
+      "overall": 8.2,
+      "label": "Foundation",
+      "reason": "Excellent guidance quality and safety constraints; broad applicability for OpenAI work."
+    },
+    {
+      "slug": "pdf",
+      "scores": {"usefulness": 7, "implementation_clarity": 8, "automation_depth": 7, "safety_readiness": 7, "integration_potential": 6},
+      "overall": 7.0,
+      "label": "Productivity",
+      "reason": "Strong PDF handling workflow with visual validation and practical tooling."
+    },
+    {
+      "slug": "playwright",
+      "scores": {"usefulness": 8, "implementation_clarity": 8, "automation_depth": 8, "safety_readiness": 6, "integration_potential": 8},
+      "overall": 7.6,
+      "label": "Foundation",
+      "reason": "High-utility browser automation with clear task coverage and strong integrations."
+    },
+    {
+      "slug": "playwright-interactive",
+      "scores": {"usefulness": 7, "implementation_clarity": 6, "automation_depth": 8, "safety_readiness": 5, "integration_potential": 7},
+      "overall": 6.6,
+      "label": "Specialist",
+      "reason": "Powerful iterative debugging mode, but constraints and clarity are lighter."
+    },
+    {
+      "slug": "render-deploy",
+      "scores": {"usefulness": 7, "implementation_clarity": 8, "automation_depth": 7, "safety_readiness": 6, "integration_potential": 8},
+      "overall": 7.2,
+      "label": "Deployment",
+      "reason": "Focused Render deployment flow with blueprint generation and usable outputs."
+    },
+    {
+      "slug": "screenshot",
+      "scores": {"usefulness": 5, "implementation_clarity": 8, "automation_depth": 5, "safety_readiness": 7, "integration_potential": 5},
+      "overall": 6.0,
+      "label": "Productivity",
+      "reason": "Clear narrow utility for capture tasks; limited depth and broader integration."
+    },
+    {
+      "slug": "security-best-practices",
+      "scores": {"usefulness": 8, "implementation_clarity": 8, "automation_depth": 6, "safety_readiness": 9, "integration_potential": 7},
+      "overall": 7.6,
+      "label": "Reliability",
+      "reason": "Strong security focus with explicit trigger boundaries and safer usage framing."
+    },
+    {
+      "slug": "security-ownership-map",
+      "scores": {"usefulness": 7, "implementation_clarity": 8, "automation_depth": 7, "safety_readiness": 9, "integration_potential": 7},
+      "overall": 7.6,
+      "label": "Reliability",
+      "reason": "Specialized but valuable security ownership analytics with clear scope controls."
+    },
+    {
+      "slug": "security-threat-model",
+      "scores": {"usefulness": 8, "implementation_clarity": 8, "automation_depth": 6, "safety_readiness": 9, "integration_potential": 7},
+      "overall": 7.6,
+      "label": "Reliability",
+      "reason": "High-impact AppSec modeling skill with explicit non-security exclusion rules."
+    },
+    {
+      "slug": "sentry",
+      "scores": {"usefulness": 7, "implementation_clarity": 8, "automation_depth": 6, "safety_readiness": 8, "integration_potential": 8},
+      "overall": 7.4,
+      "label": "Reliability",
+      "reason": "Practical production-error triage support with read-only safety orientation."
+    },
+    {
+      "slug": "slides",
+      "scores": {"usefulness": 7, "implementation_clarity": 8, "automation_depth": 7, "safety_readiness": 7, "integration_potential": 6},
+      "overall": 7.0,
+      "label": "Productivity",
+      "reason": "Comprehensive deck editing workflow with validation and layout troubleshooting."
+    },
+    {
+      "slug": "sora",
+      "scores": {"usefulness": 6, "implementation_clarity": 8, "automation_depth": 7, "safety_readiness": 6, "integration_potential": 7},
+      "overall": 6.8,
+      "label": "Creative",
+      "reason": "Capable video-generation automation, but access constraints reduce general usefulness."
+    },
+    {
+      "slug": "speech",
+      "scores": {"usefulness": 7, "implementation_clarity": 8, "automation_depth": 7, "safety_readiness": 6, "integration_potential": 7},
+      "overall": 7.0,
+      "label": "Creative",
+      "reason": "Useful TTS workflow with clear API requirements and practical outputs."
+    },
+    {
+      "slug": "spreadsheet",
+      "scores": {"usefulness": 8, "implementation_clarity": 8, "automation_depth": 7, "safety_readiness": 7, "integration_potential": 7},
+      "overall": 7.4,
+      "label": "Productivity",
+      "reason": "High everyday utility with formula-aware processing and visual review support."
+    },
+    {
+      "slug": "transcribe",
+      "scores": {"usefulness": 7, "implementation_clarity": 8, "automation_depth": 7, "safety_readiness": 6, "integration_potential": 7},
+      "overall": 7.0,
+      "label": "Productivity",
+      "reason": "Clear transcription workflow with diarization support and moderate integration breadth."
+    },
+    {
+      "slug": "vercel-deploy",
+      "scores": {"usefulness": 7, "implementation_clarity": 8, "automation_depth": 7, "safety_readiness": 6, "integration_potential": 8},
+      "overall": 7.2,
+      "label": "Deployment",
+      "reason": "Straightforward Vercel deployment skill with good practical integration value."
+    },
+    {
+      "slug": "winui-app",
+      "scores": {"usefulness": 7, "implementation_clarity": 8, "automation_depth": 6, "safety_readiness": 6, "integration_potential": 7},
+      "overall": 6.8,
+      "label": "Specialist",
+      "reason": "Detailed Windows-focused app guidance, but platform specificity limits broad applicability."
+    },
+    {
+      "slug": "yeet",
+      "scores": {"usefulness": 6, "implementation_clarity": 8, "automation_depth": 8, "safety_readiness": 6, "integration_potential": 8},
+      "overall": 7.2,
+      "label": "Productivity",
+      "reason": "Efficient end-to-end PR automation with clear trigger and tool scope."
+    }
+  ]
+}

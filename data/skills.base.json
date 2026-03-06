@@ -1,0 +1,250 @@
+{
+  "generatedAt": "2026-03-06T13:29:07.179Z",
+  "skills": [
+    {
+      "slug": "aspnet-core",
+      "title": "aspnet-core",
+      "description": "Build, review, refactor, or architect ASP.NET Core web applications using current official guidance for .NET web development. Use when working on Blazor Web Apps, Razor Pages, MVC, Minimal APIs, controller-based Web APIs, SignalR, gRPC, middleware, dependency injection, configuration, authentication, authorization, testing, performance, deployment, or ASP.NET Core upgrades.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/aspnet-core"
+    },
+    {
+      "slug": "chatgpt-apps",
+      "title": "chatgpt-apps",
+      "description": "Build, scaffold, refactor, and troubleshoot ChatGPT Apps SDK applications that combine an MCP server and widget UI. Use when Codex needs to design tools, register UI resources, wire the MCP Apps bridge or ChatGPT compatibility APIs, apply Apps SDK metadata or CSP or domain settings, or produce a docs-aligned project scaffold. Prefer a docs-first workflow by invoking the openai-docs skill or OpenAI developer docs MCP tools before generating code.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/chatgpt-apps"
+    },
+    {
+      "slug": "cloudflare-deploy",
+      "title": "cloudflare-deploy",
+      "description": "Deploy applications and infrastructure to Cloudflare using Workers, Pages, and related platform services. Use when the user asks to deploy, host, publish, or set up a project on Cloudflare.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/cloudflare-deploy"
+    },
+    {
+      "slug": "develop-web-game",
+      "title": "develop-web-game",
+      "description": "Use when Codex is building or iterating on a web game (HTML/JS) and needs a reliable development + testing loop: implement small changes, run a Playwright-based test script with short input bursts and intentional pauses, inspect screenshots/text, and review console errors with render_game_to_text.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/develop-web-game"
+    },
+    {
+      "slug": "doc",
+      "title": "doc",
+      "description": "Use when the task involves reading, creating, or editing `.docx` documents, especially when formatting or layout fidelity matters; prefer `python-docx` plus the bundled `scripts/render_docx.py` for visual checks.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/doc"
+    },
+    {
+      "slug": "figma",
+      "title": "figma",
+      "description": "Use the Figma MCP server to fetch design context, screenshots, variables, and assets from Figma, and to translate Figma nodes into production code. Trigger when a task involves Figma URLs, node IDs, design-to-code implementation, or Figma MCP setup and troubleshooting.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/figma"
+    },
+    {
+      "slug": "figma-implement-design",
+      "title": "figma-implement-design",
+      "description": "Translate Figma nodes into production-ready code with 1:1 visual fidelity using the Figma MCP workflow (design context, screenshots, assets, and project-convention translation). Trigger when the user provides Figma URLs or node IDs, or asks to implement designs or components that must match Figma specs. Requires a working Figma MCP server connection.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/figma-implement-design"
+    },
+    {
+      "slug": "gh-address-comments",
+      "title": "gh-address-comments",
+      "description": "Help address review/issue comments on the open GitHub PR for the current branch using gh CLI; verify gh auth first and prompt the user to authenticate if not logged in.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/gh-address-comments"
+    },
+    {
+      "slug": "gh-fix-ci",
+      "title": "gh-fix-ci",
+      "description": "Use when a user asks to debug or fix failing GitHub PR checks that run in GitHub Actions; use `gh` to inspect checks and logs, summarize failure context, draft a fix plan, and implement only after explicit approval. Treat external providers (for example Buildkite) as out of scope and report only the details URL.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/gh-fix-ci"
+    },
+    {
+      "slug": "imagegen",
+      "title": "imagegen",
+      "description": "Use when the user asks to generate or edit images via the OpenAI Image API (for example: generate image, edit/inpaint/mask, background removal or replacement, transparent background, product shots, concept art, covers, or batch variants); run the bundled CLI (`scripts/image_gen.py`) and require `OPENAI_API_KEY` for live calls.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/imagegen"
+    },
+    {
+      "slug": "jupyter-notebook",
+      "title": "jupyter-notebook",
+      "description": "Use when the user asks to create, scaffold, or edit Jupyter notebooks (`.ipynb`) for experiments, explorations, or tutorials; prefer the bundled templates and run the helper script `new_notebook.py` to generate a clean starting notebook.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/jupyter-notebook"
+    },
+    {
+      "slug": "linear",
+      "title": "linear",
+      "description": "Manage issues, projects & team workflows in Linear. Use when the user wants to read, create or updates tickets in Linear.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/linear"
+    },
+    {
+      "slug": "netlify-deploy",
+      "title": "netlify-deploy",
+      "description": "Deploy web projects to Netlify using the Netlify CLI (`npx netlify`). Use when the user asks to deploy, host, publish, or link a site/repo on Netlify, including preview and production deploys.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/netlify-deploy"
+    },
+    {
+      "slug": "notion-knowledge-capture",
+      "title": "notion-knowledge-capture",
+      "description": "Capture conversations and decisions into structured Notion pages; use when turning chats/notes into wiki entries, how-tos, decisions, or FAQs with proper linking.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/notion-knowledge-capture"
+    },
+    {
+      "slug": "notion-meeting-intelligence",
+      "title": "notion-meeting-intelligence",
+      "description": "Prepare meeting materials with Notion context and Codex research; use when gathering context, drafting agendas/pre-reads, and tailoring materials to attendees.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/notion-meeting-intelligence"
+    },
+    {
+      "slug": "notion-research-documentation",
+      "title": "notion-research-documentation",
+      "description": "Research across Notion and synthesize into structured documentation; use when gathering info from multiple Notion sources to produce briefs, comparisons, or reports with citations.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/notion-research-documentation"
+    },
+    {
+      "slug": "notion-spec-to-implementation",
+      "title": "notion-spec-to-implementation",
+      "description": "Turn Notion specs into implementation plans, tasks, and progress tracking; use when implementing PRDs/feature specs and creating Notion plans + tasks from them.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/notion-spec-to-implementation"
+    },
+    {
+      "slug": "openai-docs",
+      "title": "openai-docs",
+      "description": "Use when the user asks how to build with OpenAI products or APIs and needs up-to-date official documentation with citations, help choosing the latest model for a use case, or explicit GPT-5.4 upgrade and prompt-upgrade guidance; prioritize OpenAI docs MCP tools, use bundled references only as helper context, and restrict any fallback browsing to official OpenAI domains.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/openai-docs"
+    },
+    {
+      "slug": "pdf",
+      "title": "pdf",
+      "description": "Use when tasks involve reading, creating, or reviewing PDF files where rendering and layout matter; prefer visual checks by rendering pages (Poppler) and use Python tools such as `reportlab`, `pdfplumber`, and `pypdf` for generation and extraction.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/pdf"
+    },
+    {
+      "slug": "playwright",
+      "title": "playwright",
+      "description": "Use when the task requires automating a real browser from the terminal (navigation, form filling, snapshots, screenshots, data extraction, UI-flow debugging) via `playwright-cli` or the bundled wrapper script.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/playwright"
+    },
+    {
+      "slug": "playwright-interactive",
+      "title": "playwright-interactive",
+      "description": "Persistent browser and Electron interaction through `js_repl` for fast iterative UI debugging.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/playwright-interactive"
+    },
+    {
+      "slug": "render-deploy",
+      "title": "render-deploy",
+      "description": "Deploy applications to Render by analyzing codebases, generating render.yaml Blueprints, and providing Dashboard deeplinks. Use when the user wants to deploy, host, publish, or set up their application on Render's cloud platform.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/render-deploy"
+    },
+    {
+      "slug": "screenshot",
+      "title": "screenshot",
+      "description": "Use when the user explicitly asks for a desktop or system screenshot (full screen, specific app or window, or a pixel region), or when tool-specific capture capabilities are unavailable and an OS-level capture is needed.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/screenshot"
+    },
+    {
+      "slug": "security-best-practices",
+      "title": "security-best-practices",
+      "description": "Perform language and framework specific security best-practice reviews and suggest improvements. Trigger only when the user explicitly requests security best practices guidance, a security review/report, or secure-by-default coding help. Trigger only for supported languages (python, javascript/typescript, go). Do not trigger for general code review, debugging, or non-security tasks.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/security-best-practices"
+    },
+    {
+      "slug": "security-ownership-map",
+      "title": "security-ownership-map",
+      "description": "Analyze git repositories to build a security ownership topology (people-to-file), compute bus factor and sensitive-code ownership, and export CSV/JSON for graph databases and visualization. Trigger only when the user explicitly wants a security-oriented ownership or bus-factor analysis grounded in git history (for example: orphaned sensitive code, security maintainers, CODEOWNERS reality checks for risk, sensitive hotspots, or ownership clusters). Do not trigger for general maintainer lists or non-security ownership questions.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/security-ownership-map"
+    },
+    {
+      "slug": "security-threat-model",
+      "title": "security-threat-model",
+      "description": "Repository-grounded threat modeling that enumerates trust boundaries, assets, attacker capabilities, abuse paths, and mitigations, and writes a concise Markdown threat model. Trigger only when the user explicitly asks to threat model a codebase or path, enumerate threats/abuse paths, or perform AppSec threat modeling. Do not trigger for general architecture summaries, code review, or non-security design work.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/security-threat-model"
+    },
+    {
+      "slug": "sentry",
+      "title": "sentry",
+      "description": "Use when the user asks to inspect Sentry issues or events, summarize recent production errors, or pull basic Sentry health data via the Sentry API; perform read-only queries with the bundled script and require `SENTRY_AUTH_TOKEN`.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/sentry"
+    },
+    {
+      "slug": "slides",
+      "title": "slides",
+      "description": "Create and edit presentation slide decks (`.pptx`) with PptxGenJS, bundled layout helpers, and render/validation utilities. Use when tasks involve building a new PowerPoint deck, recreating slides from screenshots/PDFs/reference decks, modifying slide content while preserving editable output, adding charts/diagrams/visuals, or diagnosing layout issues such as overflow, overlaps, and font substitution.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/slides"
+    },
+    {
+      "slug": "sora",
+      "title": "sora",
+      "description": "Use when the user asks to generate, remix, poll, list, download, or delete Sora videos via OpenAI\\u2019s video API using the bundled CLI (`scripts/sora.py`), including requests like \\u201cgenerate AI video,\\u201d \\u201cSora,\\u201d \\u201cvideo remix,\\u201d \\u201cdownload video/thumbnail/spritesheet,\\u201d and batch video generation; requires `OPENAI_API_KEY` and Sora API access.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/sora"
+    },
+    {
+      "slug": "speech",
+      "title": "speech",
+      "description": "Use when the user asks for text-to-speech narration or voiceover, accessibility reads, audio prompts, or batch speech generation via the OpenAI Audio API; run the bundled CLI (`scripts/text_to_speech.py`) with built-in voices and require `OPENAI_API_KEY` for live calls. Custom voice creation is out of scope.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/speech"
+    },
+    {
+      "slug": "spreadsheet",
+      "title": "spreadsheet",
+      "description": "Use when tasks involve creating, editing, analyzing, or formatting spreadsheets (`.xlsx`, `.csv`, `.tsv`) with formula-aware workflows, cached recalculation, and visual review.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/spreadsheet"
+    },
+    {
+      "slug": "transcribe",
+      "title": "transcribe",
+      "description": "Transcribe audio files to text with optional diarization and known-speaker hints. Use when a user asks to transcribe speech from audio/video, extract text from recordings, or label speakers in interviews or meetings.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/transcribe"
+    },
+    {
+      "slug": "vercel-deploy",
+      "title": "vercel-deploy",
+      "description": "Deploy applications and websites to Vercel. Use when the user requests deployment actions like \"deploy my app\", \"deploy and give me the link\", \"push this live\", or \"create a preview deployment\".",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/vercel-deploy"
+    },
+    {
+      "slug": "winui-app",
+      "title": "winui-app",
+      "description": "Bootstrap, develop, and design modern WinUI 3 desktop applications with C# and the Windows App SDK using official Microsoft guidance, WinUI Gallery patterns, Windows App SDK samples, and CommunityToolkit components. Use when creating a brand new app, preparing a machine for WinUI, reviewing, refactoring, planning, troubleshooting, environment-checking, or setting up WinUI 3 XAML, controls, navigation, windowing, theming, accessibility, responsiveness, performance, deployment, or related Windows app design and development work.",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/winui-app"
+    },
+    {
+      "slug": "yeet",
+      "title": "yeet",
+      "description": "Use only when the user explicitly asks to stage, commit, push, and open a GitHub pull request in one flow using the GitHub CLI (`gh`).",
+      "tags": [],
+      "sourceUrl": "https://github.com/openai/skills/tree/main/skills/.curated/yeet"
+    }
+  ]
+}
